@@ -1,0 +1,7 @@
+{
+  "sourceRows": 151856684,
+  "edges": 25563197,
+  "synapses": 124025046,
+  "source": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+  "sourceSha256": "e35da783d1c686b2b58b3b87cd6a403ae43bfcfba8bff28e08ef752c1a56afc1"
+}

@@ -1,0 +1,20 @@
+Copyright (c) 2026 hatake716. All rights reserved.
+
+The original application source code, UI, and Japanese explanations are not
+licensed for redistribution or commercial reuse without permission from the
+copyright holder. Public hosting on GitHub does not grant an open-source license.
+
+EXCEPTIONS: These restrictions do not apply to the following third-party material:
+
+1. MaleCNS-derived data in app/src/main/assets/atlas (except regions.json),
+   data/source downloads, and the corresponding dataset metadata:
+   Creative Commons Attribution 4.0 International (CC BY 4.0).
+   This includes transformed ROI meshes, neuron morphology, annotations, and
+   connection data. See THIRD_PARTY_NOTICES.md and docs/licenses/CC-BY-4.0.txt.
+   All rights granted under CC BY 4.0 remain available to every recipient.
+2. Gradle wrapper files: Apache License 2.0, Gradle contributors.
+3. Third-party libraries retain their respective licenses, as identified in
+   THIRD_PARTY_NOTICES.md and packaged notices.
+
+The compilation of references and scientific facts does not restrict rights
+in the underlying facts or cited works.

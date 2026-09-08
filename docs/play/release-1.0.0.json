@@ -1,0 +1,20 @@
+{
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "applicationId": "io.github.hatake716.syoujoubae",
+  "minSdk": 28,
+  "targetSdk": 36,
+  "signerSha256": "88aa69f3592696564c3aef72deac9a3157048818673e9ca575ce0cc409defb1e",
+  "files": [
+    {
+      "file": "syoujoubae-noumiso-1.0.0.apk",
+      "bytes": 154179834,
+      "sha256": "6c788483c110b819e9b8699e31aaab72b70ba37982a5a1c9debf592785840b7a"
+    },
+    {
+      "file": "syoujoubae-noumiso-1.0.0.aab",
+      "bytes": 155057387,
+      "sha256": "a4ec7ee558e016262b5b37a04b65b930e1f0aaf52977dc319cf47d68c6fa08b0"
+    }
+  ]
+}

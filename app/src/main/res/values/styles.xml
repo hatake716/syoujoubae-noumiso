@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.Atlas" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">#101A22</item>
+        <item name="android:colorAccent">#A7E0CB</item>
+    </style>
+    <color name="icon_background">#101A22</color>
+</resources>

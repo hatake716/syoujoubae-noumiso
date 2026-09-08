@@ -1,0 +1,14 @@
+.gradle/
+.kotlin/
+.idea/
+**/build/
+local.properties
+.venv/
+__pycache__/
+.pytest_cache/
+data/source/
+artifacts/
+*.jks
+*.keystore
+keystore.properties
+*.hprof

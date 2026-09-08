@@ -1,0 +1,11 @@
+{
+  "checked": "2026-09-08",
+  "page": "https://male-cns.janelia.org/download/",
+  "pageSha256": "51144922891ccdc5cda2490d55b39ef69222134ed6944bbff2766379e403ad3c",
+  "licenseStatement": "The Male CNS is licensed under CC-BY.",
+  "licenseAnchorTarget": "https://creativecommons.org/licenses/by/4.0/",
+  "fullLegalCode": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+  "releaseNotes": "https://male-cns.janelia.org/release/",
+  "dataset": "male-cns:v1.0",
+  "conclusion": "Commercial adaptation and redistribution allowed subject to CC BY 4.0 attribution, change notices, no endorsement and no additional restrictions."
+}
