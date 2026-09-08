@@ -1,0 +1,26 @@
+{
+  "fullTriangles": 7712880,
+  "overviewEdges": 2237417,
+  "fullGpuBytes": 133890152,
+  "overviewGpuBytes": 187588160,
+  "fullPssKiB": 274608,
+  "overviewPssKiB": 337111,
+  "fullFrameMillis": [
+    353.839968,
+    352.263792,
+    357.124928,
+    386.741429,
+    357.741355,
+    374.491636
+  ],
+  "overviewFrameMillis": [
+    227.483557,
+    215.97757,
+    213.304046,
+    214.157357,
+    218.78768,
+    222.901605
+  ],
+  "heapLimitBytes": 201326592,
+  "measurement": "Emulator debug, glFinish-inclusive frame time; not physical GPU FPS"
+}

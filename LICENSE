@@ -7,7 +7,8 @@ copyright holder. Public hosting on GitHub does not grant an open-source license
 EXCEPTIONS: These restrictions do not apply to the following third-party material:
 
 1. MaleCNS-derived data in app/src/main/assets/atlas (except regions.json),
-   data/source downloads, and the corresponding dataset metadata:
+   atlas_models/src/main/assets/atlas, data/source downloads, and the
+   corresponding dataset metadata:
    Creative Commons Attribution 4.0 International (CC BY 4.0).
    This includes transformed ROI meshes, neuron morphology, annotations, and
    connection data. See THIRD_PARTY_NOTICES.md and docs/licenses/CC-BY-4.0.txt.

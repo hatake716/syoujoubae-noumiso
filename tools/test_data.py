@@ -13,6 +13,7 @@ import pyarrow.feather as feather
 
 ROOT=Path(__file__).resolve().parents[1]
 ASSETS=ROOT/'app/src/main/assets/atlas'
+MODELS=ROOT/'atlas_models/src/main/assets/atlas'
 
 @contextmanager
 def database():
@@ -59,35 +60,63 @@ def test_all_90_meshes_have_specific_explanations_and_citations():
         assert all(region[f] for f in ['name','summary','mechanism','observe','limits','sources'])
         assert all(s in r['sources'] for s in region['sources'])
 
+def read_mesh(path):
+    raw=path.read_bytes()
+    assert raw[:4]==b'MCN2'
+    chunks=struct.unpack_from('<I',raw,4)[0];offset=8
+    vertices=[];faces=[];base=0
+    for _ in range(chunks):
+        nv,ni=struct.unpack_from('<II',raw,offset);offset+=8
+        assert 0<nv<=60000 and 0<ni<=60000 and ni%3==0
+        data=np.frombuffer(raw,dtype=[('position','<f4',3),('normal','i1',4)],count=nv,offset=offset);offset+=nv*16
+        indices=np.frombuffer(raw,'<u2',count=ni,offset=offset).reshape(-1,3);offset+=ni*2
+        assert indices.max()<nv
+        assert np.isfinite(data['position']).all()
+        assert np.max(np.abs(data['normal'].astype('int16')))<=127
+        vertices.append(data['position']);faces.append(indices.astype('uint32')+base);base+=nv
+    assert offset==len(raw)
+    return np.concatenate(vertices),np.concatenate(faces)
+
 def test_mesh_binary_layout_and_same_coordinate_frame():
     for m in json.loads((ASSETS/'meshes.json').read_text()):
-        raw=(ASSETS/'meshes'/f"{m['id']}.bin").read_bytes()
-        count=struct.unpack_from('<I',raw)[0]
-        assert count>0 and count%3==0 and len(raw)==4+count*24
-        data=np.frombuffer(raw,'<f4',offset=4).reshape(-1,6)
-        assert np.isfinite(data).all()
-        assert np.all(np.linalg.norm(data[:,3:],axis=1)<=1.0001)
-        assert np.allclose(data[:,:3].min(axis=0),m['min'],atol=.001)
-        assert np.allclose(data[:,:3].max(axis=0),m['max'],atol=.001)
-        assert 0 <= data[:,0].min() < data[:,0].max() < 1000
-        assert -600 < data[:,1].min() < data[:,1].max() <= 0
+        v,f=read_mesh(MODELS/'meshes'/f"{m['id']}.bin")
+        assert len(f)==m['originalTriangles']==m['triangles']
+        assert np.allclose(v.min(axis=0),m['min'],atol=.001)
+        assert np.allclose(v.max(axis=0),m['max'],atol=.001)
+        assert 0<=v[:,0].min()<v[:,0].max()<1000
+        assert -600<v[:,1].min()<v[:,1].max()<=0
+        small_v,small_f=read_mesh(ASSETS/'meshes/interactive'/f"{m['id']}.bin")
+        assert len(small_f)==m['interactiveTriangles']<=20000
+        assert np.max(np.abs(small_v.min(axis=0)-v.min(axis=0)))<5
+        assert np.max(np.abs(small_v.max(axis=0)-v.max(axis=0)))<5
 
-def test_every_reduced_mesh_stays_in_its_original_compartment():
+def test_all_original_triangles_and_positions_are_preserved_in_order():
     checked=0
     for m in json.loads((ASSETS/'meshes.json').read_text()):
         source=ROOT/'data/source/roi'/f"{m['name']}.ngmesh"
         if not source.exists():continue
         raw=source.read_bytes();nv=struct.unpack_from('<I',raw)[0]
-        original=np.frombuffer(raw,'<f4',offset=4,count=nv*3).reshape(-1,3)/1000
+        original=np.frombuffer(raw,'<f4',offset=4,count=nv*3).reshape(-1,3).astype('float64')/1000
         original=original[:,[0,2,1]].copy();original[:,1]*=-1
+        faces=np.frombuffer(raw,'<u4',offset=4+nv*12).reshape(-1,3)
         assert hashlib.sha256(raw).hexdigest()==m['sourceSha256']
-        # QEM can move a surface slightly but cannot move it into a different ROI.
-        assert np.max(np.abs(original.min(axis=0)-m['min']))<5
-        assert np.max(np.abs(original.max(axis=0)-m['max']))<5
+        v,f=read_mesh(MODELS/'meshes'/f"{m['id']}.bin")
+        assert len(f)==len(faces)
+        assert np.array_equal(v[f],original[faces].astype('<f4'))
         checked+=1
     if not checked:
         import pytest
         pytest.skip('Original raw mesh cache is not present')
+
+def test_overview_uses_all_edges_and_gpu_geometry_stays_in_budget():
+    skeletons=json.loads((ASSETS/'skeletons.json').read_text())
+    edges=sum(struct.unpack_from('<II',(ASSETS/'skeletons'/f"{s['id']}.bin").read_bytes())[1] for s in skeletons)
+    assert edges==sum(s['previewEdges'] for s in skeletons)==2237417
+    meshes=list((ASSETS/'meshes').rglob('*.bin'))+list((MODELS/'meshes').rglob('*.bin'))
+    # MCN2 headers make this an upper bound; individual neuron gets a separate reserve.
+    gpu_upper=sum(p.stat().st_size for p in meshes)+edges*24
+    assert gpu_upper+32*1024*1024<256*1024*1024
+    assert sum(m['triangles'] for m in json.loads((ASSETS/'meshes.json').read_text()))==7712880
 
 def test_offline_skeletons_are_original_source_bytes_with_valid_edges():
     for s in json.loads((ASSETS/'skeletons.json').read_text()):

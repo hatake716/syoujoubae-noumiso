@@ -8,14 +8,18 @@ plugins {
 val signingFile = rootProject.file("keystore.properties")
 val signing = Properties().apply { if (signingFile.exists()) signingFile.inputStream().use { load(it) } }
 android {
+    assetPacks += listOf(":atlas_models")
+    // Debug APKs include the same assets directly. Release delivery uses the install-time pack;
+    // generate a complete standalone release APK from the AAB with bundletool --mode=universal.
+    sourceSets.getByName("debug").assets.srcDir(rootProject.file("atlas_models/src/main/assets"))
     namespace = "io.github.hatake716.syoujoubae"
     compileSdk = 36
     defaultConfig {
         applicationId = "io.github.hatake716.syoujoubae"
         minSdk = 28
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     if (signingFile.exists()) signingConfigs.create("upload") {

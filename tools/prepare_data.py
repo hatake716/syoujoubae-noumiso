@@ -19,11 +19,12 @@ import numpy as np
 import pyarrow.feather as feather
 import pyarrow.compute as pc
 import requests
-import trimesh
+from geometry_assets import convert_mesh
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / 'data/source'
 OUT = ROOT / 'app/src/main/assets/atlas'
+MODEL_OUT = ROOT / 'atlas_models/src/main/assets/atlas'
 BASE = 'https://storage.googleapis.com/flyem-male-cns/'
 FLAT = BASE + 'v1.0/connectome-data/flat-connectome/'
 ROI = BASE + 'rois/fullbrain-roi-v4/'
@@ -69,29 +70,11 @@ def meshes():
         source_url = ROI + 'mesh/' + urllib.parse.quote(fragment)
         source_file = RAW / 'roi' / fragment
         raw = fetch(source_url, source_file)
-        n = struct.unpack_from('<I', raw)[0]
-        vertices = np.frombuffer(raw, '<f4', count=n*3, offset=4).reshape(-1, 3).astype('float64')
-        faces = np.frombuffer(raw, '<u4', offset=4+n*12).reshape(-1, 3)
-        mesh = trimesh.Trimesh(vertices=vertices / 1000, faces=faces, process=True)
-        original_faces = len(mesh.faces)
-        if original_faces > 2200:
-            mesh = mesh.simplify_quadric_decimation(face_count=2200)
-        v = mesh.vertices[:, [0, 2, 1]].copy()
-        v[:, 1] *= -1
-        triangles = v[mesh.faces]
-        normals = np.cross(triangles[:, 1] - triangles[:, 0], triangles[:, 2] - triangles[:, 0])
-        vertex_normals = np.zeros_like(v)
-        for corner in range(3):
-            np.add.at(vertex_normals, mesh.faces[:, corner], normals)
-        vertex_normals /= np.maximum(np.linalg.norm(vertex_normals, axis=1, keepdims=True), 1e-12)
-        packed = np.concatenate([triangles, vertex_normals[mesh.faces]], axis=2).astype('<f4')
-        target = OUT / 'meshes' / f'{ident}.bin'
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(struct.pack('<I', len(mesh.faces)*3) + packed.tobytes())
+        target = MODEL_OUT / 'meshes' / f'{ident}.bin'
+        detail = convert_mesh(raw,target,OUT / 'meshes/interactive' / f'{ident}.bin')
         record = dict(id=int(ident), name=name, source=source_url, sourceSha256=sha(source_file),
-                      sha256=sha(target), vertices=len(mesh.faces)*3, originalTriangles=original_faces,
-                      center=v.mean(axis=0).tolist(), min=v.min(axis=0).tolist(), max=v.max(axis=0).tolist())
-        print('ROI', name, original_faces, '->', len(mesh.faces), flush=True)
+                      sha256=sha(target),format='MCN2',**detail)
+        print('ROI', name, detail['triangles'], 'original triangles;',detail['interactiveTriangles'],'interactive',flush=True)
         return record
 
     # fast-simplification uses mutable native state: run each mesh sequentially.
@@ -162,27 +145,19 @@ def skeletons(neurons):
         dest = OUT / 'skeletons' / f'{ident}.bin'
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(raw)
-        # Preview decimates edges explicitly; never adds a made-up connection.
-        es = e[::max(1, len(e)//1300)]
-        return n, v[es].astype('<f4'), sha(src)
+        return n, len(e), sha(src)
 
-    lines = []
     records = []
     with ThreadPoolExecutor(max_workers=6) as pool:
-        for n, segments, digest in pool.map(download, chosen):
+        for n, edges, digest in pool.map(download, chosen):
             ident = n['bodyId']
             records.append(dict(id=ident, type=n['type'], group=n['class'] or n['superclass'], source=SKEL+str(ident), sha256=digest,
-                                previewEdges=len(segments)))
-            # GL preview binary contains x,y,z,r,g,b for each endpoint.
-            group = n['class'] or n['superclass']
-            color = {'Kenyon_Cell': [0.9,0.65,0.55], 'CX':[0.69,0.62,0.88],
-                     'olfactory':[0.89,0.7,0.34], 'ALPN':[0.89,0.7,0.34],
-                     'ol_intrinsic':[0.35,0.68,0.68]}.get(group,[0.52,0.77,0.64])
-            lines.append(np.concatenate([segments, np.tile(color,(len(segments),2,1))],axis=2).astype('<f4'))
-    packed = np.concatenate(lines)
-    (OUT / 'preview.bin').write_bytes(struct.pack('<I', len(packed)*2)+packed.tobytes())
+                                previewEdges=edges))
+    # The renderer uploads all original edges directly from the existing skeletons.
+    # No second expanded copy in the APK, Java heap, or retained native buffers.
+    (OUT / 'preview.bin').unlink(missing_ok=True)
     (OUT / 'skeletons.json').write_text(json.dumps(records, ensure_ascii=False, indent=2))
-    print('Offline skeletons', len(records), 'preview edges', len(packed), flush=True)
+    print('Offline skeletons', len(records), 'full overview edges',sum(r['previewEdges'] for r in records),flush=True)
 
 
 def connections():
@@ -230,13 +205,13 @@ def connections():
 
 
 def provenance():
-    assets = {str(p.relative_to(OUT)): dict(bytes=p.stat().st_size, sha256=sha(p))
-              for p in sorted(OUT.rglob('*')) if p.is_file()}
+    assets = {str(p.relative_to(folder)): dict(bytes=p.stat().st_size, sha256=sha(p), module=module)
+              for folder,module in [(OUT,'base'),(MODEL_OUT,'atlas_models')] for p in sorted(folder.rglob('*')) if p.is_file()}
     manifest = dict(dataset='male-cns:v1.0', checked='2026-09-08',
                     license='CC-BY-4.0', licenseUrl='https://creativecommons.org/licenses/by/4.0/',
                     source='https://male-cns.janelia.org/download/',
                     attribution='FlyEM (HHMI Janelia), University of Cambridge Department of Zoology, MRC Laboratory of Molecular Biology, Google Research; Male CNS project contributors.',
-                    modifications='ROI triangle reduction, rigid coordinate rotation and nm-to-micrometre conversion; deterministic subsampling for overview only; annotations limited to status Traced; full chemical adjacency between these neurons compressed into SQLite.',
+                    modifications='Original ROI triangles preserved with indexed chunks and signed-byte normals; 20k-triangle interaction companions; rigid coordinate rotation and nm-to-micrometre conversion; deterministic 523-cell overview with all their original edges; annotations limited to status Traced; full chemical adjacency between these neurons compressed into SQLite.',
                     assets=assets)
     (ROOT / 'data/provenance/manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
 

@@ -1,6 +1,7 @@
 package io.github.hatake716.syoujoubae
 
 import android.app.Application
+import android.app.ActivityManager
 import androidx.compose.runtime.*
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,12 +35,28 @@ class AtlasViewModel(app:Application):AndroidViewModel(app) {
     var cacheBytes by mutableLongStateOf(0);private set
     var history by mutableStateOf<List<Neuron>>(emptyList());private set
     private val prefs=app.getSharedPreferences("atlas-preferences",0)
+    val camera = CameraState()
+    var portraitRatio by mutableFloatStateOf(PaneRatio.clamp(prefs.getFloat("portrait-ratio", .60f))); private set
+    var landscapeRatio by mutableFloatStateOf(PaneRatio.clamp(prefs.getFloat("landscape-ratio", .64f))); private set
+    var viewerExpanded by mutableStateOf(false)
+    private val capableDevice = app.getSystemService(ActivityManager::class.java).let { manager ->
+        val info = ActivityManager.MemoryInfo(); manager.getMemoryInfo(info)
+        !manager.isLowRamDevice && info.totalMem >= 6L * 1024 * 1024 * 1024
+    }
+    var highDetail by mutableStateOf(prefs.getBoolean("high-detail", capableDevice)); private set
+    var resizing by mutableStateOf(false)
     var bookmarks by mutableStateOf(prefs.getStringSet("regions",emptySet())?.toSet() ?: emptySet());private set
     var favoriteNeurons by mutableStateOf(prefs.getStringSet("neurons",emptySet())?.toSet() ?: emptySet());private set
     private var searchJob:Job?=null
     private var neuronJob:Job?=null
     private var startupJob:Job?=null
     init { start() }
+    fun paneRatio(wide: Boolean) = if (wide) landscapeRatio else portraitRatio
+    fun resizePane(wide: Boolean, ratio: Float) {
+        if (wide) landscapeRatio = PaneRatio.clamp(ratio) else portraitRatio = PaneRatio.clamp(ratio)
+    }
+    fun savePaneRatio(wide: Boolean) { prefs.edit().putFloat(if (wide) "landscape-ratio" else "portrait-ratio", paneRatio(wide)).apply() }
+    fun changeDetail(value: Boolean) { highDetail = value; prefs.edit().putBoolean("high-detail", value).apply() }
     fun start() {
         if(startupJob?.isActive==true || repo!=null) return
         startupError=null
@@ -97,4 +114,5 @@ class AtlasViewModel(app:Application):AndroidViewModel(app) {
     }
     fun clearNeuron() {neuronJob?.cancel();neuron=null;skeleton=null;connections=null;neuronError=null;connectionError=null;neuronLoading=false}
     fun clearCache() {viewModelScope.launch {withContext(Dispatchers.IO) {repo?.clearCache()};cacheBytes=0}}
+    override fun onCleared() {repo?.close();super.onCleared()}
 }

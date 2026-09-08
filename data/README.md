@@ -5,19 +5,28 @@ License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
 Attribution and modifications: [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
 
 The freely downloadable derived data lives in
-[`app/src/main/assets/atlas`](../app/src/main/assets/atlas). An app purchase is
+[`app/src/main/assets/atlas`](../app/src/main/assets/atlas) and
+[`atlas_models/src/main/assets/atlas`](../atlas_models/src/main/assets/atlas). An app purchase is
 not needed to obtain or reuse it under CC BY 4.0.
 
 | Asset | Representation |
 |---|---|
-| `meshes/*.bin` | uint32 LE vertex count, then interleaved float32 xyz and normal per triangle vertex; micrometres, `(x,-z,y)` axes |
+| `atlas_models: meshes/*.bin` | MCN2 indexed chunks preserving every original triangle and vertex position |
+| `base: meshes/interactive/*.bin` | Same MCN2 format, at most 20,000 triangles per region |
 | `meshes.json` | official ROI IDs/names, source URL/hash, bounds, original/reduced triangle counts |
 | `skeletons/*.bin` | unmodified official precomputed skeleton: uint32 LE vertex and edge counts, nm XYZ float32, uint32 edge indices |
 | `skeletons.json` | deterministic offline subset, source URLs and SHA-256 of each original skeleton |
-| `preview.bin` | uint32 vertex count then float32 xyzRGB; micrometres `(x,-z,y)`; sampled real edges only |
+| Overview rendering | Reads all original edges from the 523 existing skeleton files; no duplicated preview asset |
 | `database/part-*.dat` | sequential chunks of a single read-only SQLite file; concatenate in lexical filename order |
 | `connections.json` | source hash, graph edge and synapse totals |
 | `regions.json` | original Japanese explanations and primary references (app-author rights; not CC dataset content) |
+
+MCN2: ASCII `MCN2`, uint32 LE chunk count, then for each chunk uint32 vertex count
+and uint32 index count. Each 16-byte vertex stores float32 micrometre XYZ and four
+signed normal bytes (XYZ normalized by 127, fourth byte zero). Indices are uint16
+LE in original triangle order, at most 60,000 indices and 60,000 vertices per chunk.
+Chunking may duplicate boundary vertices but neither changes the original positions
+nor discards any original triangle in the full-detail files.
 
 Example extraction of the full packaged catalog and adjacency index:
 

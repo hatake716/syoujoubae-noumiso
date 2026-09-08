@@ -10,6 +10,8 @@ Google Playでの有料買い切り配布を想定しています。
 ## できること
 
 - 左右を含む **90個の脳領域モデル** を回転・拡大・移動。モデルをタップして選択。
+- **3Dと解説の境界をドラッグして調整**。縦・横それぞれの割合を保存。3D最大表示と分割表示の切り替え。
+- **元の7,712,880三角形を保持**。8GB端末では高精細を初期設定で有効にし、操作中だけ軽い形状を使用。
 - **50種類の部位解説**。主な機能、回路、3Dでの観察ポイント、科学的な限界、原著論文へのリンク。
 - 全CNSの **165,122個の追跡済み神経** を細胞型・細胞ID・分類で検索。
 - それらの間の **25,563,197本の有向接続**（合計 **124,025,046** 化学シナプス）をオフライン収録。
@@ -20,13 +22,14 @@ Google Playでの有料買い切り配布を想定しています。
 
 ## 画面
 
-<img src="docs/screenshots/01-atlas.png" alt="全脳の領域モデル" width="260"> <img src="docs/screenshots/02-neural-overview.png" alt="実測神経の抽出概観" width="260"> <img src="docs/screenshots/03-region-detail.png" alt="触角葉の機能解説" width="260">
+<img src="docs/screenshots/1.0.1/01-portrait.png" alt="全脳の領域モデル" width="260"> <img src="docs/screenshots/1.0.1/03-landscape.png" alt="横画面での表示" width="520"> <img src="docs/screenshots/1.0.1/02-region-detail.png" alt="触角葉の機能解説" width="260">
 
 ## 表示とデータの範囲
 
 **全脳の領域地図**と**神経の概観**は異なります。90個の領域は公式の
-`rois/fullbrain-roi-v4` に由来する脳の区画です。神経の概観は523個の実測細胞から
-さらに枝を抽出した表示で、全細胞・全シナプスを同時描画するものではありません。
+`rois/fullbrain-roi-v4` に由来する脳の区画です。神経の概観は523個の実測細胞が持つ
+**2,237,417本の枝を静止時に全て表示**します。操作中は細胞数を一時的に減らします。
+全165,122細胞・全シナプスを同時描画するものではありません。
 個別表示は公式の中心線形態を表示します。細胞の表面メッシュや発火シミュレーションではありません。
 
 検索・接続の対象は公式注釈の `status=Traced` の細胞です。グリア・孤立断片・未追跡の
@@ -43,6 +46,20 @@ Google Playでの有料買い切り配布を想定しています。
 未知の部位機能を補って断定することはせず、特に小領域や `CV-anterior` / `CRN` は
 解剖的な説明と未確定の内容を区別します。機能説明は別個体・成虫雌などの原著研究も
 根拠とし、MaleCNS標本で全細胞の機能が直接測定されたとする主張はしません。
+
+## 広さと精細度
+
+境界のハンドルを縦画面では上下、横画面では左右へドラッグできます。
+3Dの割合は20〜85%で調整でき、右上の最大化ボタンで3D表示に集中できます。
+設定ダイアログのスライダーからも調整でき、TalkBackの増減操作にも対応します。
+横画面ではナビゲーションを左側へ移し、縦方向の表示領域を確保しています。
+
+高精細な全脳表示は実RAMが6GiB以上の非Low-RAM端末で初期状態から有効です。
+「元の領域形状で表示」で切り替えられ、選択部位は常に元の形状を使用します。
+操作中と神経表示の背景は最大20,000三角形/領域のモデルを使用します。
+1MiBの転送用バッファを再利用してGPUへ送り、全モデルをJava配列や
+ネイティブバッファにも重複保持することはありません。GPU形態バッファの上限は256MiBです。
+これはアプリ全体のメモリ使用量や、全8GB端末の動作保証を意味しません。
 
 ## 実行・開発
 
@@ -69,6 +86,7 @@ Google Playでの有料買い切り配布を想定しています。
 ## データを再生成する
 
 アプリに加工済みのモデルとDB分割ファイルを同梱しているため、通常のビルドで再取得は不要です。
+高精細モデルは `atlas_models/src/main/assets/atlas`、その他は `app/src/main/assets/atlas` にあります。
 
 ```sh
 python3 -m venv .venv
@@ -90,17 +108,25 @@ NixOSでPython wheelが `libstdc++.so.6` を見つけられない場合は、上
 - [Google Play公開手順・掲載文](docs/PLAY_RELEASE.md)
 - [プライバシーポリシー](https://hatake716.github.io/syoujoubae-noumiso/privacy.html)
 
+[精細度とメモリの測定](docs/PERFORMANCE.md)に、エミュレーターとPixel 10aの結果を記録しています。
+
 ## リリースビルド
 
 `keystore.properties.example` を参考に、鍵の場所とパスワードを `keystore.properties` に設定します。
 秘密情報はGitから除外されています。設定がない場合、releaseの署名は行いません。
 
+モデルを含むAPKの生成には [bundletool 1.18.3](https://github.com/google/bundletool/releases/tag/1.18.3) を
+`data/source/bundletool.jar` に配置してください（または `BUNDLETOOL_JAR` を指定）。
+
 ```sh
-./gradlew :app:assembleRelease :app:bundleRelease :app:lintRelease
+./gradlew :app:bundleRelease :app:lintRelease
+python3 tools/release_apks.py
 ```
 
-Google Play向けは `app/build/outputs/bundle/release/app-release.aab`、
-直接インストール用は `app/build/outputs/apk/release/app-release.apk` です。
+Google Play向けは `app/build/outputs/bundle/release/app-release.aab` です。
+高精細モデルは `atlas_models` のinstall-time asset packとして、本体と同時にインストールされます。
+直接インストール用は `tools/release_apks.py` が同じAABから生成する全データ入りのAPKを使います。
+`assembleRelease` 単独のAPKには高精細パックが入らないため、配布しないでください。
 署名付きビルドを作成しても、Google Playへの審査申請・公開は行われません。
 
 ## 権利

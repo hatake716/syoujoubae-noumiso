@@ -8,8 +8,6 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.ViewConfiguration
 import java.nio.ByteBuffer
-import java.nio.ByteOrder
-import java.nio.FloatBuffer
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 import kotlin.math.*
@@ -25,11 +23,12 @@ fun groupColor(group:String):FloatArray = when(group) {
 }
 
 /** Native, offline OpenGL ES renderer. Gestures change only camera, never specimen geometry. */
-class BrainView(context:Context, val atlas:AtlasRepository):GLSurfaceView(context) {
+class BrainView(context:Context, val atlas:AtlasRepository, camera:CameraState = CameraState()):GLSurfaceView(context) {
     var onPick:(Int)->Unit = {}
     var onReady:()->Unit = {}
     var onFailure:(String)->Unit = {}
-    val brain = BrainRenderer(context, atlas, { id -> post { onPick(id) } }, { post { onReady() } }, { message -> post { onFailure(message) } })
+    val brain = BrainRenderer(context, atlas, camera, { id -> post { onPick(id) } }, { post { onReady() } }, { message -> post { onFailure(message) } })
+    private val refine = Runnable {brain.interacting=false;requestRender()}
     private var lastX=0f;private var lastY=0f;private var downX=0f;private var downY=0f
     private var downTime=0L;private var moved=false
     private val slop=ViewConfiguration.get(context).scaledTouchSlop
@@ -52,7 +51,7 @@ class BrainView(context:Context, val atlas:AtlasRepository):GLSurfaceView(contex
         val x=if(e.pointerCount>1) (e.getX(0)+e.getX(1))/2 else e.x
         val y=if(e.pointerCount>1) (e.getY(0)+e.getY(1))/2 else e.y
         when(e.actionMasked) {
-            MotionEvent.ACTION_DOWN -> {downX=x;downY=y;lastX=x;lastY=y;downTime=e.eventTime;moved=false;parent.requestDisallowInterceptTouchEvent(true)}
+            MotionEvent.ACTION_DOWN -> {removeCallbacks(refine);brain.interacting=true;downX=x;downY=y;lastX=x;lastY=y;downTime=e.eventTime;moved=false;parent.requestDisallowInterceptTouchEvent(true)}
             MotionEvent.ACTION_POINTER_DOWN -> {lastX=x;lastY=y;moved=true}
             MotionEvent.ACTION_POINTER_UP -> {
                 val remaining=if(e.actionIndex==0) 1 else 0
@@ -67,168 +66,248 @@ class BrainView(context:Context, val atlas:AtlasRepository):GLSurfaceView(contex
             MotionEvent.ACTION_UP -> {
                 if(!moved && e.eventTime-downTime<450) {brain.pick=Pair(e.x.toInt(),e.y.toInt());requestRender();performClick()}
                 parent.requestDisallowInterceptTouchEvent(false)
+                postDelayed(refine,160)
             }
-            MotionEvent.ACTION_CANCEL -> parent.requestDisallowInterceptTouchEvent(false)
+            MotionEvent.ACTION_CANCEL -> {parent.requestDisallowInterceptTouchEvent(false);postDelayed(refine,160)}
         }
         return true
     }
     override fun performClick():Boolean {super.performClick();return true}
-    fun update(selected:Int?, isolate:Boolean, preview:Boolean, opacity:Float, skeleton:Skeleton?, pose:Int, focus:Int) {
+    fun update(selected:Int?, isolate:Boolean, preview:Boolean, opacity:Float, skeleton:Skeleton?, pose:Int, focus:Int, highDetail:Boolean, resizing:Boolean) {
+        brain.highDetail=highDetail;brain.resizing=resizing
         brain.selected=selected;brain.isolate=isolate;brain.previewVisible=preview;brain.opacity=opacity
         queueEvent { brain.setSkeleton(skeleton);brain.setPose(pose,focus);requestRender() }
     }
 }
 
-class BrainRenderer(private val context:Context,private val atlas:AtlasRepository,private val picked:(Int)->Unit,
-                    private val ready:()->Unit,private val failed:(String)->Unit):GLSurfaceView.Renderer {
-    @Volatile var yaw=-6f;@Volatile var pitch=85f;@Volatile var zoom=1.25f
-    @Volatile var panX=0f;@Volatile var panY=0f
+class BrainRenderer(private val context:Context,private val atlas:AtlasRepository,private val camera:CameraState,
+                    private val picked:(Int)->Unit,private val ready:()->Unit,private val failed:(String)->Unit):GLSurfaceView.Renderer {
+    var yaw:Float get()=camera.yaw;set(value){camera.yaw=value}
+    var pitch:Float get()=camera.pitch;set(value){camera.pitch=value}
+    var zoom:Float get()=camera.zoom;set(value){camera.zoom=value}
+    var panX:Float get()=camera.panX;set(value){camera.panX=value}
+    var panY:Float get()=camera.panY;set(value){camera.panY=value}
     @Volatile var selected:Int?=null;@Volatile var isolate=false
     @Volatile var previewVisible=false;@Volatile var opacity=.82f
+    @Volatile var highDetail=false;@Volatile var interacting=false;@Volatile var resizing=false
     @Volatile var pick:Pair<Int,Int>?=null
-    private var program=0;private var width=1;private var height=1
-    private var position=0;private var normal=0;private var colorAttribute=0
+    @Volatile var fullDetailReady=false;private set
+    @Volatile var overviewEdges=0;private set
+    @Volatile var gpuBytes=0L;private set
+    @Volatile var lastTriangles=0;private set
+    @Volatile var lastFrameMillis=0f;private set
+    @Volatile var frameCount=0L;private set
+    private var program=0;private var width=1;private var height=1;private var viewportHeight=1
+    private var position=0;private var normal=0
     private var mvpUniform=0;private var modelUniform=0;private var colorUniform=0;private var modeUniform=0
     private val projection=FloatArray(16);private val model=FloatArray(16);private val mvp=FloatArray(16)
     private val meshes=mutableListOf<Mesh>()
-    private var preview:FloatBuffer?=null;private var previewVertices=0
-    private var skeleton:FloatBuffer?=null;private var skeletonVertices=0;private var skeletonId:Long?=null
-    private var neuronBounds:Pair<FloatArray,Float>?=null
-    private var poseVersion=-1;private var focusVersion=-1
-    private var failedOnce=false
-    private data class Mesh(val info:MeshInfo,val vertices:FloatBuffer,val count:Int,val color:FloatArray)
-    private fun buffer(values:FloatArray):FloatBuffer = ByteBuffer.allocateDirect(values.size*4).order(ByteOrder.nativeOrder()).asFloatBuffer().apply { put(values);position(0) }
+    private var gpu:GpuGeometry?=null
+    private val overview=mutableListOf<Pair<List<GpuBatch>,FloatArray>>()
+    private var neuronGpu=emptyList<GpuBatch>();private var skeletonId:Long?=null
+    private var currentSkeleton:Skeleton?=null
+    private var blockedDetail=false
+    private var reportedScene=""
+    private data class Mesh(val info:MeshInfo,val interactive:List<GpuBatch>,val color:FloatArray,var full:List<GpuBatch>?=null)
 
     override fun onSurfaceCreated(gl:GL10?,config:EGLConfig?) {
+        // GL context loss invalidates names; reload from assets, without keeping CPU copies.
+        meshes.clear();overview.clear();neuronGpu=emptyList();skeletonId=null
+        fullDetailReady=false;overviewEdges=0;gpuBytes=0;blockedDetail=false
         try {
-            program=createProgram()
-            position=glGetAttribLocation(program,"aPosition");normal=glGetAttribLocation(program,"aNormal");colorAttribute=glGetAttribLocation(program,"aColor")
+            program=createProgram();gpu=GpuGeometry(context.assets)
+            position=glGetAttribLocation(program,"aPosition");normal=glGetAttribLocation(program,"aNormal")
             mvpUniform=glGetUniformLocation(program,"uMvp");modelUniform=glGetUniformLocation(program,"uModel")
             colorUniform=glGetUniformLocation(program,"uColor");modeUniform=glGetUniformLocation(program,"uMode")
-            if(meshes.isEmpty()) {
-                atlas.meshes.forEach { info ->
-                    val b=ByteBuffer.wrap(context.assets.open("atlas/meshes/${info.id}.bin").use { it.readBytes() }).order(ByteOrder.LITTLE_ENDIAN)
-                    val count=b.int;val a=FloatArray(count*6)
-                    for(i in a.indices) a[i]=b.float
-                    for(i in a.indices step 6) for(axis in 0..2) a[i+axis]=(a[i+axis]-Geometry.origin[axis])/Geometry.unit
-                    val group=atlas.regions.firstOrNull { it.key==info.key }?.group ?: "統合領域"
-                    meshes.add(Mesh(info,buffer(a),count,groupColor(group)))
-                }
-                val b=ByteBuffer.wrap(context.assets.open("atlas/preview.bin").use { it.readBytes() }).order(ByteOrder.LITTLE_ENDIAN)
-                previewVertices=b.int;val a=FloatArray(previewVertices*6)
-                for(i in a.indices) a[i]=b.float
-                for(i in a.indices step 6) for(axis in 0..2) a[i+axis]=(a[i+axis]-Geometry.origin[axis])/Geometry.unit
-                preview=buffer(a)
+            for(info in atlas.meshes) {
+                val batches=gpu!!.mesh("atlas/meshes/interactive/${info.id}.bin")
+                gpuBytes+=batches.sumOf {it.bytes.toLong()}
+                val group=atlas.regions.firstOrNull {it.key==info.key}?.group ?: "統合領域"
+                meshes.add(Mesh(info,batches,groupColor(group)))
             }
-            glClearColor(.045f,.080f,.109f,1f)
+            currentSkeleton?.let {setSkeleton(it)}
             glDisable(GL_CULL_FACE)
             ready()
-        } catch(e:Exception) { failedOnce=true;failed("3Dモデルを読み込めませんでした：${e.localizedMessage}") }
+        } catch(e:Exception) {program=0;failed("3Dモデルを読み込めませんでした：${e.localizedMessage}")}
     }
-    override fun onSurfaceChanged(gl:GL10?,w:Int,h:Int) {width=w.coerceAtLeast(1);height=h.coerceAtLeast(1);glViewport(0,0,width,height)}
+    override fun onSurfaceChanged(gl:GL10?,w:Int,h:Int) {
+        width=w.coerceAtLeast(1);height=h.coerceAtLeast(1)
+        val density=context.resources.displayMetrics.density
+        val top=minOf((58*density).toInt(),height/4)
+        val bottom=minOf((24*density).toInt(),height/8)
+        viewportHeight=(height-top-bottom).coerceAtLeast(1)
+        glViewport(0,bottom,width,viewportHeight)
+    }
+    private fun full(mesh:Mesh):List<GpuBatch> {
+        mesh.full?.let {return it}
+        if(blockedDetail)return mesh.interactive
+        try {
+            val data=gpu!!.mesh("atlas/meshes/${mesh.info.id}.bin")
+            val bytes=data.sumOf {it.bytes.toLong()}
+            // Geometry budget, separate from Java heap / database / driver allocations.
+            if(gpuBytes+bytes>256L*1024*1024) {gpu!!.delete(data);blockedDetail=true;return mesh.interactive}
+            mesh.full=data;gpuBytes+=bytes;return data
+        } catch(e:Exception) {blockedDetail=true;android.util.Log.w("BrainAtlas","Using interaction geometry after full-detail upload failure",e);return mesh.interactive}
+    }
+    private fun loadOverview() {
+        if(overview.isNotEmpty())return
+        val staging=gpu ?: return
+        try {
+            for(cell in atlas.overviewCells) {
+                val values=Geometry.skeleton(context.assets.open("atlas/skeletons/${cell.id}.bin").use {it.readBytes()})
+                val batches=staging.lines(values)
+                overview.add(batches to when(cell.group) {
+                    "Kenyon_Cell" -> floatArrayOf(.9f,.65f,.55f)
+                    "CX" -> floatArrayOf(.69f,.62f,.88f)
+                    "olfactory","ALPN" -> floatArrayOf(.89f,.7f,.34f)
+                    "ol_intrinsic" -> floatArrayOf(.35f,.68f,.68f)
+                    else -> floatArrayOf(.52f,.77f,.64f)
+                })
+                gpuBytes+=batches.sumOf {it.bytes.toLong()};overviewEdges+=values.size/6
+            }
+        } catch(e:Exception) {
+            for((batches,_) in overview) {staging.delete(batches);gpuBytes-=batches.sumOf {it.bytes.toLong()}}
+            overview.clear();overviewEdges=0;previewVisible=false
+            failed("神経の概観を読み込めませんでした。表示設定から再試行できます。")
+        }
+    }
     override fun onDrawFrame(gl:GL10?) {
-        if(failedOnce || program==0) return
-        val aspect=width.toFloat()/height
-        Matrix.orthoM(projection,0,-1.2f*max(1f,aspect)/zoom,1.2f*max(1f,aspect)/zoom,-1.2f*max(1f,1/aspect)/zoom,1.2f*max(1f,1/aspect)/zoom,-30f,30f)
+        if(program==0)return
+        val started=System.nanoTime()
+        val moving=interacting || resizing
+        val visible=meshes.filter {!isolate || selected==null || it.info.id==selected}
+        // Preserve every original ROI face at rest. Context for a neuron uses the companion mesh.
+        if(!moving && highDetail && !previewVisible && currentSkeleton==null) visible.forEach {full(it)}
+        if(!moving) visible.firstOrNull {it.info.id==selected}?.let {full(it)}
+        fullDetailReady=meshes.all {it.full!=null}
+        if(previewVisible && !isolate)loadOverview()
+        val aspect=width.toFloat()/viewportHeight
+        val halfHeight=max(camera.fitHalfHeight*1.10f,camera.fitHalfWidth*1.08f/aspect)*1.25f/zoom
+        Matrix.orthoM(projection,0,-halfHeight*aspect,halfHeight*aspect,-halfHeight,halfHeight,-30f,30f)
         Matrix.setIdentityM(model,0)
         Matrix.translateM(model,0,panX,panY,0f)
         Matrix.rotateM(model,0,pitch,1f,0f,0f);Matrix.rotateM(model,0,yaw,0f,1f,0f)
-        if(focusCenter!=null) {val c=focusCenter!!;Matrix.translateM(model,0,-c[0],-c[1],-c[2])}
+        Matrix.translateM(model,0,-camera.center[0],-camera.center[1],-camera.center[2])
         Matrix.multiplyMM(mvp,0,projection,0,model,0)
         glUseProgram(program);glUniformMatrix4fv(mvpUniform,1,false,mvp,0);glUniformMatrix4fv(modelUniform,1,false,model,0)
+        lastTriangles=0
         val tap=pick;pick=null
         if(tap!=null) {
             glClearColor(0f,0f,0f,1f);glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
             glEnable(GL_DEPTH_TEST);glDepthMask(true);glDisable(GL_BLEND);glDisable(GL_DITHER)
-            meshes.filter { !isolate || selected==null || it.info.id==selected }.forEach { drawMesh(it,true) }
+            visible.forEach {drawMesh(it,true,moving)}
             val pixel=ByteBuffer.allocateDirect(4)
             glReadPixels(tap.first.coerceIn(0,width-1),(height-1-tap.second).coerceIn(0,height-1),1,1,GL_RGBA,GL_UNSIGNED_BYTE,pixel)
             val id=pixel.get(0).toInt() and 255
-            if(atlas.meshes.any { it.id==id }) picked(id)
+            if(atlas.meshes.any {it.id==id})picked(id)
             glEnable(GL_DITHER)
         }
         glClearColor(.045f,.080f,.109f,1f);glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
-        glEnable(GL_DEPTH_TEST);glDepthMask(true)
+        glEnable(GL_DEPTH_TEST);glDepthMask(false)
         glEnable(GL_BLEND);glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA)
-        val visible=meshes.filter { !isolate || selected==null || it.info.id==selected }
-        // Back-to-front order approximates transparency at the level of whole compartments.
-        val sorted=visible.sortedBy { mesh ->
-            val c=mesh.info.center
-            model[2]*c[0]+model[6]*c[1]+model[10]*c[2]
+        val sorted=visible.sortedBy {mesh -> val c=mesh.info.center;model[2]*c[0]+model[6]*c[1]+model[10]*c[2]}
+        sorted.filter {it.info.id!=selected}.forEach {drawMesh(it,false,moving)}
+        if(previewVisible && !isolate) for((i,entry) in overview.withIndex()) {
+            // During the gesture only: skip whole cells, never sever branches within a cell.
+            if(!moving || i%4==0)drawLines(entry.first,entry.second,if(moving).55f else .32f,1f)
         }
-        glDepthMask(false)
-        sorted.filter { it.info.id!=selected }.forEach { drawMesh(it,false) }
-        if(previewVisible && !isolate) drawLines(preview,previewVertices,true,floatArrayOf(.7f,.8f,.8f, .52f))
-        sorted.firstOrNull { it.info.id==selected }?.let { drawMesh(it,false) }
-        // Individual neuron is shown over translucent context, with real branches only.
+        sorted.firstOrNull {it.info.id==selected}?.let {drawMesh(it,false,moving)}
         glDisable(GL_DEPTH_TEST)
-        drawLines(skeleton,skeletonVertices,false,floatArrayOf(1f,.87f,.51f,1f))
-        glDepthMask(true)
+        drawLines(neuronGpu,floatArrayOf(1f,.87f,.51f),1f,2f)
+        glDepthMask(true);glBindBuffer(GL_ARRAY_BUFFER,0);glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0)
+        lastFrameMillis=(System.nanoTime()-started)/1_000_000f;frameCount++
+        if(!moving) {
+            val scene="triangles=$lastTriangles overviewEdges=${if(previewVisible && !isolate)overviewEdges else 0} gpuBytes=$gpuBytes"
+            if(scene!=reportedScene) {android.util.Log.i("BrainAtlas",scene);reportedScene=scene}
+        }
     }
-    private fun drawMesh(mesh:Mesh,picking:Boolean) {
+    private fun drawMesh(mesh:Mesh,picking:Boolean,moving:Boolean) {
         val chosen=mesh.info.id==selected
-        val alpha=if(chosen) .98f else if(selected!=null) opacity*.21f else if(previewVisible) opacity*.10f else opacity
-        if(picking) glUniform4f(colorUniform,mesh.info.id/255f,0f,0f,1f)
+        val alpha=if(chosen).96f else if(selected!=null || currentSkeleton!=null)opacity*.15f else if(previewVisible)opacity*.08f else opacity
+        if(picking)glUniform4f(colorUniform,mesh.info.id/255f,0f,0f,1f)
         else glUniform4f(colorUniform,mesh.color[0],mesh.color[1],mesh.color[2],alpha)
-        glUniform1i(modeUniform,if(picking) 2 else 0)
-        mesh.vertices.position(0);glEnableVertexAttribArray(position);glVertexAttribPointer(position,3,GL_FLOAT,false,24,mesh.vertices)
-        mesh.vertices.position(3);glEnableVertexAttribArray(normal);glVertexAttribPointer(normal,3,GL_FLOAT,false,24,mesh.vertices)
-        glDisableVertexAttribArray(colorAttribute);glVertexAttrib3f(colorAttribute,1f,1f,1f)
-        glDrawArrays(GL_TRIANGLES,0,mesh.count)
+        glUniform1i(modeUniform,if(picking)1 else 0)
+        val original=!moving && (chosen || (highDetail && !previewVisible && currentSkeleton==null))
+        val batches=if(original)mesh.full ?: mesh.interactive else mesh.interactive
+        for(batch in batches) {
+            glBindBuffer(GL_ARRAY_BUFFER,batch.vertex);glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,batch.index)
+            glEnableVertexAttribArray(position);glVertexAttribPointer(position,3,GL_FLOAT,false,16,0)
+            glEnableVertexAttribArray(normal);glVertexAttribPointer(normal,3,GL_BYTE,true,16,12)
+            glDrawElements(GL_TRIANGLES,batch.count,GL_UNSIGNED_SHORT,0)
+            if(!picking)lastTriangles+=batch.count/3
+        }
     }
-    private fun drawLines(vertices:FloatBuffer?,count:Int,colors:Boolean,color:FloatArray) {
-        if(vertices==null || count==0) return
-        glUniform1i(modeUniform,if(colors) 1 else 2);glUniform4fv(colorUniform,1,color,0)
-        vertices.position(0);glEnableVertexAttribArray(position);glVertexAttribPointer(position,3,GL_FLOAT,false,if(colors)24 else 12,vertices)
+    private fun drawLines(batches:List<GpuBatch>,color:FloatArray,alpha:Float,width:Float) {
+        glUniform1i(modeUniform,1);glUniform4f(colorUniform,color[0],color[1],color[2],alpha)
         glDisableVertexAttribArray(normal);glVertexAttrib3f(normal,0f,0f,1f)
-        if(colors) {vertices.position(3);glEnableVertexAttribArray(colorAttribute);glVertexAttribPointer(colorAttribute,3,GL_FLOAT,false,24,vertices)}
-        else glDisableVertexAttribArray(colorAttribute)
-        glLineWidth(if(colors)1f else 2f);glDrawArrays(GL_LINES,0,count)
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);glLineWidth(width)
+        for(batch in batches) {
+            glBindBuffer(GL_ARRAY_BUFFER,batch.vertex)
+            glEnableVertexAttribArray(position);glVertexAttribPointer(position,3,GL_FLOAT,false,12,0)
+            glDrawArrays(GL_LINES,0,batch.count)
+        }
     }
     fun setSkeleton(value:Skeleton?) {
-        if(skeletonId==value?.id) return
-        skeletonId=value?.id;skeleton=value?.let { buffer(it.lines) };skeletonVertices=(value?.lines?.size ?: 0)/3
-        neuronBounds=value?.let { Geometry.bounds(it.lines) }
+        currentSkeleton=value
+        if(skeletonId==value?.id || gpu==null)return
+        val upload=gpu!!;upload.delete(neuronGpu);gpuBytes-=neuronGpu.sumOf {it.bytes.toLong()}
+        neuronGpu=emptyList();skeletonId=null
+        if(value!=null) {
+            neuronGpu=upload.lines(value.lines);gpuBytes+=neuronGpu.sumOf {it.bytes.toLong()};skeletonId=value.id
+        }
     }
-    private var focusCenter:FloatArray?=null
+    private fun fit(boxes:List<Pair<FloatArray,FloatArray>>) {
+        val lo=FloatArray(3){a->boxes.minOf {it.first[a]}}
+        val hi=FloatArray(3){a->boxes.maxOf {it.second[a]}}
+        camera.center=FloatArray(3){(lo[it]+hi[it])/2}
+        val rotation=FloatArray(16);Matrix.setIdentityM(rotation,0)
+        Matrix.rotateM(rotation,0,pitch,1f,0f,0f);Matrix.rotateM(rotation,0,yaw,0f,1f,0f)
+        var halfX=.02f;var halfY=.02f
+        for((min,max) in boxes)for(corner in 0..7) {
+            val p=FloatArray(3){a->(if(corner and (1 shl a)==0)min[a] else max[a])-camera.center[a]}
+            halfX=maxOf(halfX,abs(rotation[0]*p[0]+rotation[4]*p[1]+rotation[8]*p[2]))
+            halfY=maxOf(halfY,abs(rotation[1]*p[0]+rotation[5]*p[1]+rotation[9]*p[2]))
+        }
+        camera.fitHalfWidth=halfX;camera.fitHalfHeight=halfY
+        zoom=1.25f;panX=0f;panY=0f
+    }
+    private fun box(info:MeshInfo)=FloatArray(3){(info.min[it]-Geometry.origin[it])/Geometry.unit} to FloatArray(3){(info.max[it]-Geometry.origin[it])/Geometry.unit}
     fun setPose(version:Int,focus:Int) {
-        if(poseVersion!=version) { poseVersion=version;yaw=-6f;pitch=85f;zoom=1.25f;panX=0f;panY=0f;focusCenter=null }
-        if(focusVersion!=focus) {
-            focusVersion=focus
+        if(camera.poseVersion!=version) {
+            camera.poseVersion=version;yaw=-6f;pitch=85f;fit(atlas.meshes.map {box(it)})
+        }
+        if(camera.focusVersion!=focus) {
+            camera.focusVersion=focus
             if(focus>0) {
-                val chosen=atlas.meshes.firstOrNull { it.id==selected }
-                val b=if(neuronBounds!=null) neuronBounds else chosen?.let {
-                    val c=FloatArray(3) { axis -> ((it.min[axis]+it.max[axis])/2-Geometry.origin[axis])/Geometry.unit }
-                    val radius=sqrt((0..2).sumOf { axis -> ((it.max[axis]-it.min[axis])/2/Geometry.unit).toDouble().pow(2) }).toFloat()
-                    c to radius
-                }
-                b?.let { focusCenter=it.first;zoom=(.9f/it.second).coerceIn(.35f,18f);panX=0f;panY=0f }
+                val lines=currentSkeleton?.lines
+                if(lines!=null && lines.isNotEmpty()) {
+                    val lo=FloatArray(3){Float.POSITIVE_INFINITY};val hi=FloatArray(3){Float.NEGATIVE_INFINITY}
+                    for(i in lines.indices step 3)for(a in 0..2){lo[a]=minOf(lo[a],lines[i+a]);hi[a]=maxOf(hi[a],lines[i+a])}
+                    fit(listOf(lo to hi))
+                } else atlas.meshes.firstOrNull {it.id==selected}?.let {fit(listOf(box(it)))}
             }
         }
     }
     private fun createProgram():Int {
-        fun shader(type:Int,source:String):Int { val id=glCreateShader(type);glShaderSource(id,source);glCompileShader(id)
+        fun shader(type:Int,source:String):Int {
+            val id=glCreateShader(type);glShaderSource(id,source);glCompileShader(id)
             val status=IntArray(1);glGetShaderiv(id,GL_COMPILE_STATUS,status,0)
-            check(status[0]!=0) { glGetShaderInfoLog(id) };return id }
+            check(status[0]!=0){glGetShaderInfoLog(id)};return id
+        }
         val vertex=shader(GL_VERTEX_SHADER,"""
-            uniform mat4 uMvp; uniform mat4 uModel;
-            attribute vec3 aPosition; attribute vec3 aNormal; attribute vec3 aColor;
-            varying vec3 vNormal; varying vec3 vColor;
-            void main(){ gl_Position=uMvp*vec4(aPosition,1.0);vNormal=mat3(uModel)*aNormal;vColor=aColor; }
+            uniform mat4 uMvp;uniform mat4 uModel;
+            attribute vec3 aPosition;attribute vec3 aNormal;varying vec3 vNormal;
+            void main(){gl_Position=uMvp*vec4(aPosition,1.0);vNormal=mat3(uModel)*aNormal;}
         """.trimIndent())
         val fragment=shader(GL_FRAGMENT_SHADER,"""
-            precision mediump float;
-            uniform vec4 uColor; uniform int uMode;
-            varying vec3 vNormal; varying vec3 vColor;
+            precision mediump float;uniform vec4 uColor;uniform int uMode;varying vec3 vNormal;
             void main(){
-                if(uMode==2) {gl_FragColor=uColor;}
-                else if(uMode==1) {gl_FragColor=vec4(vColor,uColor.a);}
-                else {vec3 n=normalize(vNormal);float light=0.43+0.57*abs(dot(n,normalize(vec3(-0.4,0.7,1.0))));
-                    gl_FragColor=vec4(uColor.rgb*light,uColor.a);}
+                if(uMode==1){gl_FragColor=uColor;}
+                else{vec3 n=normalize(vNormal);float light=0.43+0.57*abs(dot(n,normalize(vec3(-0.4,0.7,1.0))));gl_FragColor=vec4(uColor.rgb*light,uColor.a);}
             }
         """.trimIndent())
         val p=glCreateProgram();glAttachShader(p,vertex);glAttachShader(p,fragment);glLinkProgram(p)
-        val status=IntArray(1);glGetProgramiv(p,GL_LINK_STATUS,status,0);check(status[0]!=0) {glGetProgramInfoLog(p)}
+        val status=IntArray(1);glGetProgramiv(p,GL_LINK_STATUS,status,0);check(status[0]!=0){glGetProgramInfoLog(p)}
         glDeleteShader(vertex);glDeleteShader(fragment);return p
     }
 }

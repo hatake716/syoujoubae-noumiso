@@ -1,6 +1,7 @@
 package io.github.hatake716.syoujoubae
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
@@ -11,6 +12,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -29,6 +33,10 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.semantics.*
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontFamily
@@ -66,51 +74,102 @@ class MainActivity:ComponentActivity() {
 
 @Composable private fun AtlasApp(vm:AtlasViewModel) {
     val r=vm.repo
-    BackHandler(vm.neuron!=null || vm.selectedMesh!=null || vm.tab!=0) {
-        when {vm.neuron!=null -> {vm.clearNeuron();vm.pose++};vm.selectedMesh!=null -> vm.selectRegion(null);else -> vm.tab=0}
+    val wide=LocalConfiguration.current.orientation==Configuration.ORIENTATION_LANDSCAPE
+    val tabs=listOf("探索" to Icons.Outlined.Public,"神経" to Icons.Outlined.Hub,"ガイド" to Icons.AutoMirrored.Outlined.MenuBook,"情報" to Icons.Outlined.Info)
+    BackHandler(vm.viewerExpanded || vm.neuron!=null || vm.selectedMesh!=null || vm.tab!=0) {
+        when {vm.viewerExpanded -> vm.viewerExpanded=false;vm.neuron!=null -> {vm.clearNeuron();vm.pose++};vm.selectedMesh!=null -> vm.selectRegion(null);else -> vm.tab=0}
     }
     Scaffold(containerColor=Ink,bottomBar={
-        NavigationBar(containerColor=Ink,tonalElevation=0.dp) {
-            listOf("探索" to Icons.Outlined.Public,"神経" to Icons.Outlined.Hub,"ガイド" to Icons.AutoMirrored.Outlined.MenuBook,"情報" to Icons.Outlined.Info).forEachIndexed { i,(title,icon) ->
+        if(!wide) NavigationBar(containerColor=Ink,tonalElevation=0.dp) {
+            tabs.forEachIndexed { i,(title,icon) ->
                 NavigationBarItem(selected=vm.tab==i,onClick={vm.tab=i},icon={Icon(icon,title)},label={Text(title)},modifier=Modifier.testTag("tab-$i"),
                     colors=NavigationBarItemDefaults.colors(selectedIconColor=Mint,selectedTextColor=Mint,indicatorColor=Panel))
             }
         }
     }) { padding ->
-        Column(Modifier.fillMaxSize().padding(padding)) {
-            Row(Modifier.fillMaxWidth().padding(horizontal=22.dp,vertical=12.dp),verticalAlignment=Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text("DROSOPHILA  /  BRAIN ATLAS",color=Mint,fontSize=10.sp,letterSpacing=2.sp,fontWeight=FontWeight.Medium)
-                    Text("ショウジョウバエの脳",fontSize=23.sp,fontWeight=FontWeight.SemiBold,letterSpacing=(-.7).sp)
+        Row(Modifier.fillMaxSize().padding(padding)) {
+            if(wide) NavigationRail(containerColor=Ink,windowInsets=WindowInsets(0,0,0,0),modifier=Modifier.fillMaxHeight().width(72.dp)) {
+                tabs.forEachIndexed { i,(title,icon) ->
+                    NavigationRailItem(selected=vm.tab==i,onClick={vm.tab=i},icon={Icon(icon,title,Modifier.size(22.dp))},label={Text(title,fontSize=10.sp,maxLines=1,softWrap=false)},modifier=Modifier.testTag("tab-$i"),
+                        colors=NavigationRailItemDefaults.colors(selectedIconColor=Mint,selectedTextColor=Mint,indicatorColor=Panel))
                 }
-                Text("♂\nv1.0",color=Muted,fontFamily=FontFamily.Monospace,fontSize=12.sp)
             }
-            if(r==null) {
-                Box(Modifier.fillMaxSize().padding(28.dp),contentAlignment=Alignment.Center) {
-                    Column(horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(18.dp)) {
-                        if(vm.startupError==null) {CircularProgressIndicator(color=Mint);Text("MaleCNSの地図を準備しています",fontSize=18.sp);Text("初回は全神経の接続データを端末に展開します。",color=Muted)}
-                        else {Text(vm.startupError!!);Button(onClick=vm::start) {Text("再試行")}}
+            Column(Modifier.weight(1f).fillMaxHeight()) {
+                if(!vm.viewerExpanded || vm.tab>=2) Row(Modifier.fillMaxWidth().padding(horizontal=20.dp,vertical=if(wide)4.dp else 9.dp),verticalAlignment=Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        if(!wide) Text("DROSOPHILA  /  BRAIN ATLAS",color=Mint,fontSize=10.sp,letterSpacing=2.sp,fontWeight=FontWeight.Medium)
+                        Text("ショウジョウバエの脳",fontSize=if(wide)18.sp else 23.sp,fontWeight=FontWeight.SemiBold,letterSpacing=(-.7).sp)
                     }
+                    Text("♂  v${BuildConfig.VERSION_NAME}",color=Muted,fontFamily=FontFamily.Monospace,fontSize=11.sp)
                 }
-            } else if(vm.tab<2) {
-                BoxWithConstraints(Modifier.weight(1f)) {
-                    val wide=maxWidth>700.dp
-                    val keyboardOpen=WindowInsets.ime.getBottom(LocalDensity.current)>0
-                    val viewerHeight=if(keyboardOpen) 0.dp else (maxHeight*.43f).coerceIn(160.dp,380.dp)
-                    if(wide) Row(Modifier.fillMaxSize()) {
-                        Viewer(vm,r,Modifier.weight(1.15f).fillMaxHeight())
-                        Box(Modifier.weight(1f).fillMaxHeight()) {if(vm.tab==0) Regions(vm,r) else Neurons(vm,r)}
-                    } else Column(Modifier.fillMaxSize()) {
-                        Viewer(vm,r,Modifier.fillMaxWidth().height(viewerHeight))
-                        Box(Modifier.weight(1f)) {if(vm.tab==0) Regions(vm,r) else Neurons(vm,r)}
+                if(r==null) {
+                    Box(Modifier.fillMaxSize().padding(28.dp),contentAlignment=Alignment.Center) {
+                        Column(horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(18.dp)) {
+                            if(vm.startupError==null) {CircularProgressIndicator(color=Mint);Text("MaleCNSの地図を準備しています",fontSize=18.sp);Text("初回は全神経の接続データを端末に展開します。",color=Muted)}
+                            else {Text(vm.startupError!!);Button(onClick=vm::start) {Text("再試行")}}
+                        }
                     }
-                }
-            } else if(vm.tab==2) Guide(vm,r) else About(vm,r)
+                } else if(vm.tab<2) ResizableAtlas(vm,r,wide,Modifier.weight(1f))
+                else if(vm.tab==2) Guide(vm,r) else About(vm,r)
+            }
         }
     }
 }
 
-@Composable private fun Viewer(vm:AtlasViewModel,r:AtlasRepository,modifier:Modifier) {
+@Composable private fun ResizableAtlas(vm:AtlasViewModel,r:AtlasRepository,wide:Boolean,modifier:Modifier) {
+    DisposableEffect(wide) {
+        onDispose { vm.resizing=false; vm.savePaneRatio(wide) }
+    }
+    BoxWithConstraints(modifier.fillMaxWidth().clipToBounds()) {
+        val density=LocalDensity.current
+        val keyboardOpen=WindowInsets.ime.getBottom(density)>0
+        val thickness=if(wide)32.dp else 36.dp
+        val dividerPx=with(density){thickness.roundToPx()}
+        val available=with(density){(if(wide)maxWidth else maxHeight).toPx()}-dividerPx
+        val ratio=vm.paneRatio(wide)
+        fun change(value:Float) {vm.resizePane(wide,value);vm.savePaneRatio(wide)}
+        Layout(modifier=Modifier.fillMaxSize(),content={
+            Viewer(vm,r,Modifier.fillMaxSize(),wide)
+            Box(Modifier.fillMaxSize().background(Panel).testTag("pane-divider")
+                .semantics {
+                    contentDescription=if(wide)"3Dと解説の境界。左右にドラッグして調整" else "3Dと解説の境界。上下にドラッグして調整"
+                    stateDescription="3D ${(ratio*100).toInt()}パーセント"
+                    progressBarRangeInfo=ProgressBarRangeInfo(ratio,PaneRatio.MIN..PaneRatio.MAX)
+                    setProgress {change(it);true}
+                    customActions=listOf(CustomAccessibilityAction("3Dを広げる"){change(ratio+.1f);true},CustomAccessibilityAction("解説を広げる"){change(ratio-.1f);true},CustomAccessibilityAction("均等にする"){change(.5f);true})
+                }
+                .draggable(rememberDraggableState {delta->vm.resizePane(wide,PaneRatio.afterDrag(vm.paneRatio(wide),delta,available))},
+                    orientation=if(wide)Orientation.Horizontal else Orientation.Vertical,
+                    onDragStarted={vm.resizing=true},onDragStopped={vm.resizing=false;vm.savePaneRatio(wide)}),
+                contentAlignment=Alignment.Center) {
+                if(wide) Column(horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(6.dp)) {
+                    Icon(Icons.Outlined.DragIndicator,null,tint=Mint,modifier=Modifier.size(20.dp))
+                    Box(Modifier.width(4.dp).height(38.dp).background(Mint.copy(alpha=.5f),CircleShape))
+                } else Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(10.dp)) {
+                    Box(Modifier.width(34.dp).height(4.dp).background(Mint.copy(alpha=.65f),CircleShape))
+                    Text("ドラッグして広さを調整",fontSize=10.sp,color=Mint)
+                    Text("3D ${(ratio*100).toInt()}%",fontSize=10.sp,color=Muted)
+                }
+            }
+            Box(Modifier.fillMaxSize().clipToBounds().testTag("explanation-pane")) {if(vm.tab==0)Regions(vm,r) else Neurons(vm,r)}
+        }) {children,constraints ->
+            val w=constraints.maxWidth;val h=constraints.maxHeight
+            val hidden=keyboardOpen && !vm.viewerExpanded
+            val divider=if(hidden || vm.viewerExpanded)0 else dividerPx
+            val size=if(hidden)0 else if(vm.viewerExpanded)(if(wide)w else h) else (((if(wide)w else h)-divider)*ratio).toInt()
+            val viewer=children[0].measure(Constraints.fixed(if(wide)size else w,if(wide)h else size))
+            val handle=children[1].measure(Constraints.fixed(if(wide)divider else w,if(wide)h else divider))
+            val text=children[2].measure(Constraints.fixed(if(wide)(w-size-divider).coerceAtLeast(0) else w,if(wide)h else (h-size-divider).coerceAtLeast(0)))
+            layout(w,h) {
+                viewer.placeRelative(0,0)
+                handle.placeRelative(if(wide)size else 0,if(wide)0 else size)
+                text.placeRelative(if(wide)size+divider else 0,if(wide)0 else size+divider)
+            }
+        }
+    }
+}
+
+@Composable private fun Viewer(vm:AtlasViewModel,r:AtlasRepository,modifier:Modifier,wide:Boolean) {
     var view by remember(r) {mutableStateOf<BrainView?>(null)}
     var loaded by remember(r) {mutableStateOf(false)}
     var error by remember(r) {mutableStateOf<String?>(null)}
@@ -124,17 +183,18 @@ class MainActivity:ComponentActivity() {
         onDispose {lifecycle.removeObserver(observer);currentView?.onPause()}
     }
     Box(modifier.clipToBounds().background(Color(0xFF0B141C))) {
-        AndroidView(factory={ctx -> BrainView(ctx,r).also { v ->
+        AndroidView(factory={ctx -> BrainView(ctx,r,vm.camera).also { v ->
             v.onPick={vm.selectRegion(it)};v.onReady={loaded=true};v.onFailure={error=it};view=v
-        }}, update={it.update(vm.selectedMesh,vm.isolate,vm.preview,vm.opacity,vm.skeleton,vm.pose,vm.focus)},modifier=Modifier.fillMaxSize().testTag("brain-view"))
-        Column(Modifier.align(Alignment.TopStart).padding(14.dp)) {
+        }}, update={it.update(vm.selectedMesh,vm.isolate,vm.preview,vm.opacity,vm.skeleton,vm.pose,vm.focus,vm.highDetail,vm.resizing)},modifier=Modifier.fillMaxSize().testTag("brain-view"))
+        Column(Modifier.align(Alignment.TopStart).padding(start=12.dp,top=10.dp,end=180.dp)) {
             Label(if(vm.neuron!=null) "NEURON  /  ${vm.neuron!!.id}" else if(vm.selectedMesh!=null) r.meshes.first {it.id==vm.selectedMesh}.name else "MALE CNS  /  全脳")
-            Text(if(vm.neuron!=null) "実測の神経形態" else if(vm.preview && !vm.isolate) "抽出 ${r.previewCount}細胞 · 概観表示" else "${r.meshes.size} 領域 · 実測モデル",fontSize=11.sp,color=Muted,modifier=Modifier.padding(top=4.dp))
+            Text(if(vm.neuron!=null) "実測の神経形態" else if(vm.preview && !vm.isolate) "${r.previewCount}細胞 · 全ての枝を表示" else "${r.meshes.size} 領域 · 実測モデル",fontSize=11.sp,color=Muted,modifier=Modifier.padding(top=4.dp))
         }
-        Column(Modifier.align(Alignment.TopEnd).padding(5.dp)) {
+        Row(Modifier.align(Alignment.TopEnd).padding(3.dp)) {
             RoundIcon(Icons.Outlined.RestartAlt,"視点をリセット") {vm.pose++}
             RoundIcon(Icons.Outlined.CenterFocusStrong,"選択を拡大") {vm.focus++}
             RoundIcon(Icons.Outlined.Tune,"表示設定") {controls=!controls}
+            RoundIcon(if(vm.viewerExpanded)Icons.Outlined.FullscreenExit else Icons.Outlined.Fullscreen,if(vm.viewerExpanded)"解説との分割に戻す" else "3Dを最大化") {vm.viewerExpanded=!vm.viewerExpanded}
         }
         Row(Modifier.align(Alignment.BottomStart).padding(14.dp),horizontalArrangement=Arrangement.spacedBy(12.dp)) {
             Text("ドラッグで回転",fontSize=10.sp,color=Muted)
@@ -143,16 +203,21 @@ class MainActivity:ComponentActivity() {
         }
         if(!loaded && error==null) CircularProgressIndicator(Modifier.size(28.dp).align(Alignment.Center),color=Mint,strokeWidth=2.dp)
         error?.let {Text(it,color=Warm,modifier=Modifier.align(Alignment.Center).padding(26.dp))}
-        if(controls) Surface(Modifier.align(Alignment.BottomCenter).padding(12.dp).widthIn(max=460.dp),shape=RoundedCornerShape(18.dp),color=Panel,shadowElevation=12.dp) {
-            Column(Modifier.padding(14.dp)) {
-                Row(verticalAlignment=Alignment.CenterVertically) {Text("表示設定",Modifier.weight(1f),fontWeight=FontWeight.Bold);IconButton(onClick={controls=false}){Icon(Icons.Outlined.Close,"設定を閉じる")}}
-                Row(verticalAlignment=Alignment.CenterVertically) {Text("神経の概観（抽出表示）",Modifier.weight(1f),fontSize=13.sp);Switch(vm.preview,{vm.preview=it})}
+        if(controls) AlertDialog(onDismissRequest={controls=false},title={Text("表示設定")},confirmButton={TextButton(onClick={controls=false}){Text("閉じる")}},text={
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                Text("3Dと解説の広さ",fontWeight=FontWeight.Bold)
+                Slider(vm.paneRatio(wide),{vm.resizePane(wide,it)},onValueChangeFinished={vm.savePaneRatio(wide)},valueRange=PaneRatio.MIN..PaneRatio.MAX,modifier=Modifier.testTag("pane-ratio-slider"))
+                Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) {Text("3D ${(vm.paneRatio(wide)*100).toInt()}%",fontSize=12.sp);TextButton(onClick={vm.resizePane(wide,.5f);vm.savePaneRatio(wide)}){Text("半分ずつ")}}
+                Row(verticalAlignment=Alignment.CenterVertically) {Text("元の領域形状で表示",Modifier.weight(1f),fontSize=13.sp);Switch(vm.highDetail,{vm.changeDetail(it)},modifier=Modifier.testTag("high-detail-switch"))}
+                Text("8GB端末では初期設定で有効です。操作中は軽く、指を離すと細部まで表示します。選択した部位は、この設定にかかわらず元の形状で表示します。",fontSize=11.sp,color=Muted)
+                Row(verticalAlignment=Alignment.CenterVertically) {Text("神経の概観（523細胞）",Modifier.weight(1f),fontSize=13.sp);Switch(vm.preview,{vm.preview=it},modifier=Modifier.testTag("overview-switch"))}
+                Text("静止時は同梱523細胞の全ての枝を表示します。概観の背景となる領域は軽い形状を使います。",fontSize=11.sp,color=Muted)
                 Row(verticalAlignment=Alignment.CenterVertically) {Text("選択した領域だけ",Modifier.weight(1f),fontSize=13.sp);Switch(vm.isolate,{vm.isolate=it},enabled=vm.selectedMesh!=null)}
                 Text("領域の不透明度",fontSize=12.sp,color=Muted)
                 Slider(vm.opacity,{vm.opacity=it},valueRange=.05f..1f)
                 Text("透過は領域単位の近似です。重なりは回転して確認できます。",fontSize=10.sp,color=Muted)
             }
-        }
+        })
     }
 }
 
@@ -302,7 +367,7 @@ class MainActivity:ComponentActivity() {
             PathButtons(vm,r,listOf("ME","AOTU","BU","EB","PB"))}
         item {ArticleSection("神経をたどる","神経タブでEPGなどの細胞型、または10001のような細胞IDを検索します。接続一覧の相手を選ぶと、その相手の形態と入力・出力を開けます。数値は接続された化学シナプスの数です。")
             OutlinedButton(onClick={vm.tab=1;vm.search("EPG")}) {Text("EPGの神経を探す")}}
-        item {ArticleSection("全脳と概観表示の違い","90個の領域モデルは脳全体の区画です。神経の概観は、実測形態から抽出した${r.previewCount}個の細胞の一部の枝を重ねたものです。全${number(vm.allCount.toLong())}細胞を同時に描画してはいません。個別表示は配布元の中心線形態を読み込みます。")}
+        item {ArticleSection("全脳と概観表示の違い","90個の領域モデルは脳全体の区画です。神経の概観は、実測形態から選んだ${r.previewCount}個の細胞の全ての枝を重ねたものです。操作中のみ細胞数を減らし、指を離すと全てに戻ります。全${number(vm.allCount.toLong())}細胞を同時に描画してはいません。個別表示は配布元の中心線形態を読み込みます。")}
         item {ArticleSection("機能が未解明の領域","形が分かっても、そこで行われる計算がすべて分かるわけではありません。解説には実験で確かめられた内容と、解剖・接続の説明を分けて記載しています。小領域に根拠のない機能を割り当てることはしていません。")}
         items(r.notes) {Body(it)}
         item {Text("ガイドの出典",fontSize=18.sp,fontWeight=FontWeight.Bold)}
@@ -326,7 +391,7 @@ class MainActivity:ComponentActivity() {
         item {ArticleSection("商用利用とライセンス","MaleCNSデータはCC BY 4.0で配布されています。クレジット、ライセンスへのリンク、変更の表示などの条件を守ることで、加工・再配布・商用利用が認められています。アプリの購入代金は閲覧体験や解説の提供に対するもので、元データの利用権を独占するものではありません。")
             ExternalLink("MaleCNS 公式配布ページ","https://male-cns.janelia.org/download/")
             ExternalLink("CC BY 4.0 の利用条件","https://creativecommons.org/licenses/by/4.0/")}
-        item {ArticleSection("加えた変更","領域メッシュの三角形数を削減し、座標を剛体回転・単位変換しました。概観は決定的に選んだ細胞の枝を抽出しています。神経注釈はstatusがTracedの細胞に限定し、それらの間の全接続を圧縮して収録しています。説明文・配色・画面は本アプリ独自のものです。")
+        item {ArticleSection("加えた変更","高精細表示は元の領域メッシュの全三角形と座標を保持し、法線を符号付き8bitにして頂点を索引化しました。操作中と神経概観の背景には、各領域を最大20,000三角形にした形状を使います。座標を剛体回転・単位変換しました。概観は決定的に選んだ523細胞の全ての枝を静止時に表示します。神経注釈はstatusがTracedの細胞に限定し、それらの間の全接続を圧縮して収録しています。説明文・配色・画面は本アプリ独自のものです。")
             ExternalLink("データ・加工手順・出典を取得","https://github.com/hatake716/syoujoubae-noumiso/tree/main/data")}
         item {ArticleSection("収録範囲と注意点","全CNSの追跡済み神経を検索でき、脳に関係する分類に絞れます。腹側神経索内在・感覚・運動などvnc_の分類とENSなどは脳フィルターから除外します。神経形態は脳以外へ延びる部分も含みます。グリア・孤立断片・未追跡領域は検索と接続集計に含めていません。90領域の外形は脳のモデルであり、腹側神経索の領域メッシュは収録していません。")}
         item {ArticleSection("プライバシー","アカウント、広告、分析SDKはありません。検索語や保存した部位を開発者に送信しません。未同梱の神経形態を開く際は、Google Cloud Storageの公開配布先へ細胞IDを含むHTTPSリクエストを送ります。配布先はIPアドレス等の通常の通信情報を受け取ります。外部リンクは端末のブラウザで開きます。")

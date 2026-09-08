@@ -4,23 +4,27 @@
     "name": "AL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AL%28L%29.ngmesh",
     "sourceSha256": "02c3c529bc6cc4d4e0d120853319c3cd13f78189ddec622473b3b550748f80ce",
-    "sha256": "e05dbdbfd44a6a5a96c188cc2d7492a71baf720cc72c2de04362f9117246f88e",
-    "vertices": 6600,
+    "sha256": "330bc8e5df22c9820fa18eeb63de32ad4762e8cde75c9420e11f26d90919711d",
+    "format": "MCN2",
+    "vertices": 39984,
+    "triangles": 80032,
     "originalTriangles": 80032,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      447.05660394530514,
-      -127.51474559191536,
-      216.53764588845394
+      447.39220382449355,
+      -125.7525377932432,
+      216.44152891
     ],
     "min": [
-      390.58581662270876,
-      -167.50282581201716,
-      161.89741391582263
+      390.23553125,
+      -167.40128125,
+      161.02478125
     ],
     "max": [
-      499.6952249451018,
-      -81.70909854288665,
-      268.7063545059359
+      499.70915625,
+      -81.40853125,
+      268.5548125
     ]
   },
   {
@@ -28,23 +32,27 @@
     "name": "AL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AL%28R%29.ngmesh",
     "sourceSha256": "eb847795903d6267517c19e8e75b4a6f98dc4d48afe539a144ae3865a819a83a",
-    "sha256": "82eeaba57a56acc9cb5529a524d3f19b22221b1f9e73aa73f358f59b12c633e5",
-    "vertices": 6600,
+    "sha256": "6ef0da11d08b1738ec93d89d3f5fd3a3cfe5764550578d2a2aadf8d3c5775a61",
+    "format": "MCN2",
+    "vertices": 40435,
+    "triangles": 80912,
     "originalTriangles": 80912,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      327.725011748121,
-      -131.36814239716523,
-      231.05247294535675
+      327.8823812345435,
+      -131.5206276779098,
+      231.2578054752236
     ],
     "min": [
-      274.80270594457085,
-      -169.6465147408969,
-      176.8913964790983
+      274.9460625,
+      -169.68671875,
+      177.15409375
     ],
     "max": [
-      384.8194577989733,
-      -92.74877498897555,
-      286.5123398634397
+      384.70896875,
+      -92.6725,
+      286.4646875
     ]
   },
   {
@@ -52,23 +60,27 @@
     "name": "AME(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AME%28L%29.ngmesh",
     "sourceSha256": "d92eaf1b5fbf590e67386e13be0874bc328d2fe9de97667b4c5f80f60c2ab7e0",
-    "sha256": "d867a85613409183a9712e3a80c6c83afbe5073bf0110ad24c0367bafa35ba07",
-    "vertices": 6600,
+    "sha256": "ab5b34260e2d65203a6a228cc288958f3694d5af0151f89dc797accaddf66b92",
+    "format": "MCN2",
+    "vertices": 5286,
+    "triangles": 10600,
     "originalTriangles": 10600,
+    "interactiveTriangles": 10600,
+    "chunks": 1,
     "center": [
-      571.6961668153114,
-      -209.7733130827007,
-      262.8516044866449
+      571.9480950624287,
+      -209.2081747954502,
+      262.60278321864297
     ],
     "min": [
-      562.2266785315672,
-      -225.68552360816452,
-      239.35270542192427
+      562.2515,
+      -225.695921875,
+      239.41584375
     ],
     "max": [
-      585.1052897477201,
-      -194.336157535346,
-      308.77231662376465
+      585.2119375,
+      -194.302046875,
+      308.80184375
     ]
   },
   {
@@ -76,23 +88,27 @@
     "name": "AME(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AME%28R%29.ngmesh",
     "sourceSha256": "65fa91bb1cb18232f40c3968440e1c69461ee244af90c4b51b1ce2b757653059",
-    "sha256": "b6c4eb74545bfb02fc4fa3d3a090613755a19d1d838e569a68cc735a3dba2ad3",
-    "vertices": 6600,
+    "sha256": "6b491dd49dd9a2cc92d78e3aeada5ec60a8c7958ce85a39e3f6f77000d210b9f",
+    "format": "MCN2",
+    "vertices": 8876,
+    "triangles": 17752,
     "originalTriangles": 17752,
+    "interactiveTriangles": 17752,
+    "chunks": 1,
     "center": [
-      209.8493891502411,
-      -217.59316241098406,
-      269.50885521425124
+      209.7476067538156,
+      -217.39519662925343,
+      269.5190412154269
     ],
     "min": [
-      173.25977407129577,
-      -236.2184953321319,
-      244.65999235989284
+      173.16215625,
+      -236.224265625,
+      244.584625
     ],
     "max": [
-      241.14713580659122,
-      -186.86168282784374,
-      318.77028442968725
+      241.210234375,
+      -186.880609375,
+      318.77690625
     ]
   },
   {
@@ -100,23 +116,27 @@
     "name": "AMMC(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AMMC%28L%29.ngmesh",
     "sourceSha256": "d671cb1878c3b697d563a290586abec84d78d8bf8474b7217393f904d1dcdd9e",
-    "sha256": "196cecf7c6d1b1063790bdc3bb48891dfd3e57ef19a5dce93c705fcc9425f029",
-    "vertices": 6600,
+    "sha256": "076b2a3df5f192e2f67afd9cf1bca01f51060e7cce0d7984373f2d1c817ffbfc",
+    "format": "MCN2",
+    "vertices": 43493,
+    "triangles": 87086,
     "originalTriangles": 87086,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      460.80690158334863,
-      -215.39386673391905,
-      284.5021970037088
+      460.67312756147186,
+      -215.0134487672588,
+      284.5182328014732
     ],
     "min": [
-      398.23999497360984,
-      -263.26592011629566,
-      253.46850070473502
+      398.34578125,
+      -263.36753125,
+      253.183984375
     ],
     "max": [
-      505.6956193139774,
-      -153.67461145229822,
-      315.2945725053503
+      505.8228125,
+      -153.961078125,
+      315.32040625
     ]
   },
   {
@@ -124,23 +144,27 @@
     "name": "AMMC(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AMMC%28R%29.ngmesh",
     "sourceSha256": "97ffb59c97aa81354168adfb040d313846f8a6ab45ec645b3011b0a3b196d942",
-    "sha256": "d122f5a6ed4fd993d88a6fd2c4596a1431a4b5a161eb3bd929b4a01cab656cbe",
-    "vertices": 6600,
+    "sha256": "8eddca96c9e8e4fbc7b70cb47c0f57343f101b420dcab40be5ece03d945312a8",
+    "format": "MCN2",
+    "vertices": 46977,
+    "triangles": 94050,
     "originalTriangles": 94050,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      322.6967094508764,
-      -217.6348559876822,
-      295.17290297918163
+      323.0902921941838,
+      -217.45518152666492,
+      295.1557007465099
     ],
     "min": [
-      274.2749675743465,
-      -265.6304856484762,
-      260.0151031563168
+      274.02434375,
+      -265.73734375,
+      259.698484375
     ],
     "max": [
-      388.1159695871879,
-      -159.56032504304963,
-      326.65921200492176
+      387.8139375,
+      -159.475015625,
+      326.79853125
     ]
   },
   {
@@ -148,23 +172,27 @@
     "name": "AOTU(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AOTU%28L%29.ngmesh",
     "sourceSha256": "b5ab7a1331074bbd22179e8a15f48256ed020c435bf40c4f259cfbc2482d4333",
-    "sha256": "8281a9ab0e2b8b3d627046728fc7e1ba9f395b3e95550aa69df161b366415f7f",
-    "vertices": 6594,
+    "sha256": "dbe9349041a0e96a36701b3d64f9f3e9ee2d23c97e1759f87864c0db78430332",
+    "format": "MCN2",
+    "vertices": 13123,
+    "triangles": 26280,
     "originalTriangles": 26280,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      524.8314366541524,
-      -150.80238858547966,
-      126.4776137884207
+      524.4265116184384,
+      -149.9757977793043,
+      125.99313755250753
     ],
     "min": [
-      487.9374786480616,
-      -169.58057077078197,
-      99.43736565595032
+      487.94996875,
+      -169.725859375,
+      99.332828125
     ],
     "max": [
-      562.2445494855566,
-      -126.92854524664702,
-      149.92304375080766
+      562.1693125,
+      -126.9758359375,
+      149.758984375
     ]
   },
   {
@@ -172,23 +200,27 @@
     "name": "AOTU(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AOTU%28R%29.ngmesh",
     "sourceSha256": "8dba06050f59b5b4fc4d9fadeaa5d10b480abc4bfceefc12d41b0af9fb17f4cf",
-    "sha256": "97dd6356163f528fce701abd452a6e13f23786472b35fe047b7ec36bd2db051f",
-    "vertices": 6600,
+    "sha256": "7e478e8acced980bcb8f794748618ae531212f4f82e70b1d339e009a3b6e8e44",
+    "format": "MCN2",
+    "vertices": 16819,
+    "triangles": 33698,
     "originalTriangles": 33698,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      251.86252133808816,
-      -157.38394559671715,
-      135.17170162059256
+      252.51908383282978,
+      -156.245213658102,
+      134.74710149561142
     ],
     "min": [
-      212.0273855469546,
-      -181.15457580315544,
-      104.50737676259185
+      211.9713125,
+      -181.18153125,
+      104.4704921875
     ],
     "max": [
-      290.4664961584055,
-      -130.16623928674142,
-      159.03445722285335
+      290.61496875,
+      -130.0491953125,
+      158.974109375
     ]
   },
   {
@@ -196,23 +228,27 @@
     "name": "ATL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ATL%28L%29.ngmesh",
     "sourceSha256": "30c527cae8ed2ba8bcebea95e3318767de605fabdd53b75fae50540f3d7272c6",
-    "sha256": "d597b8ba39d706bfd23993457b90e882567eb3080e64dabf687f44ce7f35d07f",
-    "vertices": 6600,
+    "sha256": "ec631bbe3b5bef6c81cbeb9890d7373db70646b2700d32bded91f4103ce8d943",
+    "format": "MCN2",
+    "vertices": 9151,
+    "triangles": 18322,
     "originalTriangles": 18322,
+    "interactiveTriangles": 18322,
+    "chunks": 1,
     "center": [
-      416.0452854321638,
-      -238.38011984870093,
-      122.82703848283938
+      415.75136159641045,
+      -238.47703753688043,
+      123.04379845696475
     ],
     "min": [
-      393.1747711654387,
-      -259.4832657864229,
-      92.33226561791118
+      393.179,
+      -259.51984375,
+      92.2451875
     ],
     "max": [
-      450.2047264721985,
-      -227.06961339698117,
-      157.42365037724252
+      450.2633125,
+      -227.000109375,
+      157.4228125
     ]
   },
   {
@@ -220,23 +256,27 @@
     "name": "ATL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ATL%28R%29.ngmesh",
     "sourceSha256": "4fbb700d9c395ef863219d9284475bf6cc6cd48098fbe0c2ebc56b7b6825bf10",
-    "sha256": "bed26b80bdba6cf9947dda336311db4aacf35b1bbc598d83ad3237bcb694a271",
-    "vertices": 6600,
+    "sha256": "53b4ce0768d3bb77495c1c3e5dc6a201e108c362dbd4424a101cf4d86d12cf2e",
+    "format": "MCN2",
+    "vertices": 8887,
+    "triangles": 17800,
     "originalTriangles": 17800,
+    "interactiveTriangles": 17800,
+    "chunks": 1,
     "center": [
-      357.55890259073965,
-      -238.3027371012073,
-      124.55019798414389
+      357.99069533799315,
+      -238.5932317043154,
+      125.1938978370795
     ],
     "min": [
-      321.150825738379,
-      -260.260734248132,
-      96.85408272315223
+      321.06484375,
+      -260.31040625,
+      96.8585078125
     ],
     "max": [
-      382.65062236318374,
-      -226.94061143399236,
-      158.6119995444461
+      382.542125,
+      -226.9225,
+      158.6729375
     ]
   },
   {
@@ -244,23 +284,27 @@
     "name": "AVLP(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AVLP%28L%29.ngmesh",
     "sourceSha256": "569cb3b550a25b2a052d650e8839de19857633eb49d7387ee771d146b4a470bf",
-    "sha256": "ebde0eaf547c437bd71bda82a9529270e1bc1eaad9d4f13a64804e47983355b1",
-    "vertices": 6600,
+    "sha256": "20827ffa7e89d4c2120dc5effd4208c07477c84b738138ada0a088d40b92649d",
+    "format": "MCN2",
+    "vertices": 76514,
+    "triangles": 153344,
     "originalTriangles": 153344,
+    "interactiveTriangles": 20000,
+    "chunks": 8,
     "center": [
-      531.4605269302507,
-      -180.20866887273064,
-      194.47715085944392
+      532.1258312571929,
+      -179.32690310065703,
+      195.1593980938129
     ],
     "min": [
-      479.8765905817907,
-      -223.7088713297412,
-      110.22471256413978
+      479.8754375,
+      -223.816734375,
+      109.7498203125
     ],
     "max": [
-      586.6511242581588,
-      -128.365754977983,
-      284.6616809777728
+      586.75325,
+      -128.25628125,
+      284.075
     ]
   },
   {
@@ -268,23 +312,27 @@
     "name": "AVLP(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AVLP%28R%29.ngmesh",
     "sourceSha256": "2d9f5b52808aa3576301a424c5a36f71bed5c8ad60047fa2265dd74630409cec",
-    "sha256": "6b1d2688bc8c612e9b072d5d31fb8b3cf908912057bc78a906aa533cef683d3f",
-    "vertices": 6600,
+    "sha256": "c18bdffd0e55f6ef8eaa7d9d3a6e5a30c0eb36fec1a0b2bea3da0faf924c9a28",
+    "format": "MCN2",
+    "vertices": 69183,
+    "triangles": 138496,
     "originalTriangles": 138496,
+    "interactiveTriangles": 20000,
+    "chunks": 7,
     "center": [
-      244.01216770460255,
-      -186.4993734934717,
-      203.31428884060546
+      244.31076323256644,
+      -185.51900221197707,
+      203.52375999093658
     ],
     "min": [
-      189.75257122121857,
-      -227.7824176242132,
-      122.94873365993946
+      189.69659375,
+      -228.285890625,
+      123.07696875
     ],
     "max": [
-      298.55198704272436,
-      -135.28673326686808,
-      288.8359946090202
+      298.653125,
+      -135.168484375,
+      288.99303125
     ]
   },
   {
@@ -292,23 +340,27 @@
     "name": "BU(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/BU%28L%29.ngmesh",
     "sourceSha256": "f4e75d9f9a45d6d08685035b56ef282fd8a8f96dc6f2a4411d1edd23fd2f62f6",
-    "sha256": "0c3c2d38be55271798a0e6f969969cd56760e0e2781dc4650410b741a9af2387",
-    "vertices": 6600,
+    "sha256": "602061eb7984c59bd1631e30a8b0055dd32a13b3fe3908af2e72690eb5439d0e",
+    "format": "MCN2",
+    "vertices": 7295,
+    "triangles": 14688,
     "originalTriangles": 14688,
+    "interactiveTriangles": 14688,
+    "chunks": 1,
     "center": [
-      450.68445399387326,
-      -166.03767992198556,
-      152.0685402999486
+      450.84813263793717,
+      -165.9267695317856,
+      152.18770316676702
     ],
     "min": [
-      432.13816253589243,
-      -181.4092817849672,
-      129.09264384853478
+      432.13609375,
+      -181.224890625,
+      129.0325546875
     ],
     "max": [
-      486.74213905321034,
-      -148.06313575287794,
-      169.4536073960417
+      486.60290625,
+      -148.071734375,
+      169.469984375
     ]
   },
   {
@@ -316,23 +368,27 @@
     "name": "BU(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/BU%28R%29.ngmesh",
     "sourceSha256": "964051de5d20c09ddbff39cb450d12563615ba974f8289073018b777b0393e61",
-    "sha256": "a4e6692c7f46afb90d1236b2d8d8b40574b8751776b9792d5772b60bea09563d",
-    "vertices": 6600,
+    "sha256": "de7c145357b3810772c9f956cdaf3fc186eb2e3d32a92dfc613eb335b59c6a4e",
+    "format": "MCN2",
+    "vertices": 6684,
+    "triangles": 13380,
     "originalTriangles": 13380,
+    "interactiveTriangles": 13380,
+    "chunks": 1,
     "center": [
-      324.61594597495485,
-      -166.9691326474775,
-      160.54655367953262
+      324.2761425418909,
+      -166.85287456285485,
+      160.74259786196524
     ],
     "min": [
-      292.9662354048927,
-      -181.92718898043245,
-      135.52713935002873
+      292.98928125,
+      -181.75525,
+      135.444078125
     ],
     "max": [
-      343.5122560631986,
-      -148.49087587781278,
-      178.82924485433517
+      343.516375,
+      -148.47265625,
+      178.86884375
     ]
   },
   {
@@ -340,23 +396,27 @@
     "name": "CA(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CA%28L%29.ngmesh",
     "sourceSha256": "9def9fc7f81442da03b9b86a3bf0ab59ce3d8bbec0c00cd5708610943e24f6e6",
-    "sha256": "2006b2042ba87efa288266775e7ad27629f95f0f1b83cd55c2c1fec012dc799b",
-    "vertices": 6600,
+    "sha256": "e36e2461776ba233f4a3091ca2c634c2eb62b9c470b5b32a973d60149a55228f",
+    "format": "MCN2",
+    "vertices": 16220,
+    "triangles": 32466,
     "originalTriangles": 32466,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      473.1706308230148,
-      -264.1066857790319,
-      103.09288253168853
+      472.89300792231734,
+      -264.3094354779988,
+      102.94904514921791
     ],
     "min": [
-      441.43104597466254,
-      -281.54702139516047,
-      78.65001520725579
+      441.35075,
+      -281.60265625,
+      78.4472578125
     ],
     "max": [
-      505.50891033943157,
-      -248.19338473597747,
-      129.91974793781236
+      505.6354375,
+      -248.14721875,
+      130.008984375
     ]
   },
   {
@@ -364,23 +424,27 @@
     "name": "CA(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CA%28R%29.ngmesh",
     "sourceSha256": "3a04c836830de9256f76a368bfd7347778fb5dec35a8ecd24551eae2237ef11a",
-    "sha256": "f7071b86fd7c3732225b3b8ccd4daed6436681efa687988d1302b117ab2494f1",
-    "vertices": 6600,
+    "sha256": "b77c05e6b3518209bec68b878f4c0e1c8c38c1f86a485728f98595fb37fa9ecb",
+    "format": "MCN2",
+    "vertices": 19884,
+    "triangles": 39840,
     "originalTriangles": 39840,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      300.0571778660609,
-      -269.8005508251867,
-      110.63750861335893
+      300.42525266545977,
+      -269.57673684243497,
+      110.52043026585405
     ],
     "min": [
-      264.8266215204237,
-      -292.39360110134055,
-      86.55287722059863
+      264.80328125,
+      -292.5393125,
+      86.5864921875
     ],
     "max": [
-      333.44108525520824,
-      -249.4859480630822,
-      138.151410313483
+      333.5645625,
+      -249.388234375,
+      138.2419375
     ]
   },
   {
@@ -388,23 +452,27 @@
     "name": "CAN(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CAN%28L%29.ngmesh",
     "sourceSha256": "843303d3f1c0e9e6b00bfc92bd1108387d7bd91bbfb3b19bd458a4796fd3d12d",
-    "sha256": "f1af4b9e83368155f5e93aa1059a50fa578cca9304e9251929f06c45394a3f6d",
-    "vertices": 6600,
+    "sha256": "64a90eab734c2b8e7df7f4910b461d17570469b290ed74c6742656f204459c56",
+    "format": "MCN2",
+    "vertices": 7850,
+    "triangles": 15736,
     "originalTriangles": 15736,
+    "interactiveTriangles": 15736,
+    "chunks": 1,
     "center": [
-      414.8396287363139,
-      -236.32259520865964,
-      257.8142523888068
+      415.0046842038226,
+      -235.88280838375778,
+      257.85623567476074
     ],
     "min": [
-      403.0934715636901,
-      -252.3190423622895,
-      232.86771691449326
+      403.19359375,
+      -252.39421875,
+      232.863390625
     ],
     "max": [
-      429.3356532394952,
-      -220.50067791723345,
-      280.19573110778526
+      429.2951875,
+      -220.437765625,
+      280.24615625
     ]
   },
   {
@@ -412,23 +480,27 @@
     "name": "CAN(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CAN%28R%29.ngmesh",
     "sourceSha256": "f5b7df03c005d51fdf056c156eb256c5cd5b85db1ef6b1e172ef49d8aff58436",
-    "sha256": "677e8f13a8275f8d7344d2f10e77cc5400282bf6aed3d5f008df6ef1f8db7fde",
-    "vertices": 6600,
+    "sha256": "d10d7ed87e8d9352ad5912a907370d5e240ff723679d90ef9a83dc0bd7969588",
+    "format": "MCN2",
+    "vertices": 8441,
+    "triangles": 16928,
     "originalTriangles": 16928,
+    "interactiveTriangles": 16928,
+    "chunks": 1,
     "center": [
-      369.84619214258583,
-      -235.20358045990417,
-      264.1906658817876
+      369.50810471212026,
+      -235.37869280520715,
+      264.0606346811693
     ],
     "min": [
-      355.00962750054936,
-      -252.68651223872766,
-      236.92474212382567
+      355.01684375,
+      -252.79646875,
+      236.90065625
     ],
     "max": [
-      382.93164718904416,
-      -219.12669372522404,
-      285.9583454885476
+      382.96921875,
+      -219.129890625,
+      285.89971875
     ]
   },
   {
@@ -436,23 +508,27 @@
     "name": "CRE(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CRE%28L%29.ngmesh",
     "sourceSha256": "c0cf2722cfb29782bd9a0269aec8b91c3cff2c8cfb9aaea90ddef0eb21cd2d6b",
-    "sha256": "2cddde87b6778fc667f343b47df8a5028b4e0d86769144c7f0ae3463bc28d951",
-    "vertices": 6600,
+    "sha256": "9f1b328500ec04de8a79b87617f520309e95961955ae9dde380c64973850ace8",
+    "format": "MCN2",
+    "vertices": 41202,
+    "triangles": 82640,
     "originalTriangles": 82640,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      432.1326980202877,
-      -129.95049343155128,
-      135.2717542349132
+      430.88331103920746,
+      -127.95111513624884,
+      134.15925030907334
     ],
     "min": [
-      390.8989029625871,
-      -168.48256357322822,
-      98.08657493284326
+      390.72321875,
+      -168.346953125,
+      97.8936640625
     ],
     "max": [
-      475.7362708921139,
-      -93.88411806968176,
-      171.5465026874445
+      475.78503125,
+      -93.7223046875,
+      171.505140625
     ]
   },
   {
@@ -460,23 +536,27 @@
     "name": "CRE(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CRE%28R%29.ngmesh",
     "sourceSha256": "5961dd525b39b840df8668a140dcf92e5a2ff632f5c1220f1b906ae20463ce20",
-    "sha256": "d369bc63513ebef09da92f891a7e2d869bc08db88f7a698233eb2879af67c47c",
-    "vertices": 6600,
+    "sha256": "4f79650b54b7deaea95eaebe8d096913f31e3b6800cf1bb7d8a2b2a2aad3ad53",
+    "format": "MCN2",
+    "vertices": 41656,
+    "triangles": 83464,
     "originalTriangles": 83464,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      342.96303391014476,
-      -132.10392934675957,
-      141.57211357589523
+      344.58297290531476,
+      -130.4516584268693,
+      140.94731118735137
     ],
     "min": [
-      304.0141539609968,
-      -167.26099481874766,
-      101.71331754137947
+      303.9794375,
+      -167.3765,
+      101.722140625
     ],
     "max": [
-      383.88953422662564,
-      -98.32034959796671,
-      187.56872145692094
+      384.05640625,
+      -98.3340078125,
+      187.351609375
     ]
   },
   {
@@ -484,23 +564,27 @@
     "name": "EB",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/EB.ngmesh",
     "sourceSha256": "3f3f385ea6a92bbd84720b206e56c20eae6a987375c8f4381005846abb2f3582",
-    "sha256": "d3a03ad11fc38908254df09355f0071f8de529a5f279fa2c5582108af306405e",
-    "vertices": 6600,
+    "sha256": "67815ffcf891b91174a1dbb6bf6f9e1d2fea89415eaa0841eccd3c44c8103d1f",
+    "format": "MCN2",
+    "vertices": 18175,
+    "triangles": 36386,
     "originalTriangles": 36386,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      387.334367344282,
-      -163.25271597319744,
-      161.84259480002055
+      387.4779621561218,
+      -163.3542034920904,
+      161.93943436726303
     ],
     "min": [
-      354.65316605934527,
-      -191.35804078695227,
-      133.42215133340218
+      354.60284375,
+      -191.40165625,
+      133.379265625
     ],
     "max": [
-      421.7399356532751,
-      -139.35265088975805,
-      190.62450111779955
+      421.59259375,
+      -139.264609375,
+      190.717484375
     ]
   },
   {
@@ -508,23 +592,27 @@
     "name": "EPA(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/EPA%28L%29.ngmesh",
     "sourceSha256": "1afc1c4c77d62efb5bfe7c0de26ca0bc1d8aeca4d748aed64c3434bc407f25f3",
-    "sha256": "b2a0fe4f532c10cb78c8b5cb92d3fb25c9626c84c36c39e2b6e9cf6698ecde1e",
-    "vertices": 6600,
+    "sha256": "06f1a59b654219c627d76eca5838d9030482fda12f357afe571855bb1927b559",
+    "format": "MCN2",
+    "vertices": 13718,
+    "triangles": 27470,
     "originalTriangles": 27470,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      457.00472640171733,
-      -205.7762306602714,
-      195.50121706145168
+      456.4714974098813,
+      -205.12916845339996,
+      195.11568264665942
     ],
     "min": [
-      426.992768356545,
-      -226.7006744371945,
-      174.4335742311432
+      426.9230625,
+      -226.82659375,
+      174.361921875
     ],
     "max": [
-      480.5343123360315,
-      -185.49685099738085,
-      224.18913526778903
+      480.5031875,
+      -185.391015625,
+      224.4014375
     ]
   },
   {
@@ -532,23 +620,27 @@
     "name": "EPA(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/EPA%28R%29.ngmesh",
     "sourceSha256": "0ed98be4beb2f521bc8f5f2dc35773aebfa444168bee662ce5d518af2d3cec5d",
-    "sha256": "d92326a1d0341b4ef0e3c80b9eea9550d389a9d491c23e60eecfe30d09ba798a",
-    "vertices": 6600,
+    "sha256": "43946d955e3d05b51bfddcc16cb8813612f585d6cd26bbd5abdf672df9db82bc",
+    "format": "MCN2",
+    "vertices": 11834,
+    "triangles": 23756,
     "originalTriangles": 23756,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      323.34979307990204,
-      -204.35815753388684,
-      202.78931699986134
+      323.5555139798442,
+      -203.97624931737954,
+      202.62573453344183
     ],
     "min": [
-      301.8732851793036,
-      -225.56911857361817,
-      180.59151639191404
+      301.84871875,
+      -225.667703125,
+      180.544484375
     ],
     "max": [
-      350.12201177057244,
-      -184.3504931907206,
-      228.09568564954236
+      350.10984375,
+      -184.23715625,
+      228.09290625
     ]
   },
   {
@@ -556,23 +648,27 @@
     "name": "FB",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/FB.ngmesh",
     "sourceSha256": "f14a159df5c41cf16e2121bfbdff2ca588b29a6c01ded1460993fa5ed2a01141",
-    "sha256": "7a278b742d8741563925f589a9b175342e1f2bdad64608ee99dec44cad9def98",
-    "vertices": 6600,
+    "sha256": "ffa9ff29c57111e315e2b8b50c68e208d880bec55db4a7b2babca62312b46566",
+    "format": "MCN2",
+    "vertices": 40413,
+    "triangles": 80926,
     "originalTriangles": 80926,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      389.2671177247947,
-      -195.3853585638157,
-      154.91397916417924
+      388.7087625075759,
+      -194.66350811039936,
+      153.73055531558646
     ],
     "min": [
-      332.9483074659725,
-      -232.65813960363297,
-      111.69529339297452
+      332.90403125,
+      -232.62915625,
+      111.617484375
     ],
     "max": [
-      443.82564993338974,
-      -163.90492251242438,
-      189.73977553830886
+      444.04884375,
+      -164.104,
+      189.9500625
     ]
   },
   {
@@ -580,23 +676,27 @@
     "name": "FLA(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/FLA%28L%29.ngmesh",
     "sourceSha256": "982b9cbc6864a031db3cbed433fdf823266a7f349f7b9b1d6ad1f81cf691f50d",
-    "sha256": "cefb35192c8fe06ed09335fe5b921217bb7595336addcc15b066632dbc37518c",
-    "vertices": 6600,
+    "sha256": "76a712f975bb76c84c83639846818d427ced43f698935207fa7964f98a363932",
+    "format": "MCN2",
+    "vertices": 22128,
+    "triangles": 44324,
     "originalTriangles": 44324,
+    "interactiveTriangles": 20000,
+    "chunks": 3,
     "center": [
-      413.60732902187243,
-      -186.6938069053686,
-      272.97964560455245
+      414.2494643988984,
+      -186.67957019810936,
+      273.6294626081787
     ],
     "min": [
-      390.45365258966035,
-      -217.73989536971726,
-      228.24445244332102
+      390.21696875,
+      -217.941328125,
+      228.25534375
     ],
     "max": [
-      445.8000895360587,
-      -148.4859776626135,
-      315.5856815282998
+      445.7853125,
+      -148.5849375,
+      315.6825625
     ]
   },
   {
@@ -604,23 +704,27 @@
     "name": "FLA(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/FLA%28R%29.ngmesh",
     "sourceSha256": "9249cdb402b989f6581b2dff1a99609e15ac2fb34ef2c98ea4b14d71e9992dba",
-    "sha256": "0703ca4f88b5c6388c8a6b50dff713381fbaa3770fccccc9da0a0bc67dee4876",
-    "vertices": 6600,
+    "sha256": "44629ae956cee2fb638dce745bd78f184b2c7948da0c287967062214a4b2dd0a",
+    "format": "MCN2",
+    "vertices": 22443,
+    "triangles": 44942,
     "originalTriangles": 44942,
+    "interactiveTriangles": 20000,
+    "chunks": 3,
     "center": [
-      366.89881474370094,
-      -186.43112705813184,
-      279.2973806645961
+      366.39963842428836,
+      -185.99294483942742,
+      279.8087260211981
     ],
     "min": [
-      334.4754624807878,
-      -217.68872493592667,
-      234.38544819197162
+      334.49771875,
+      -217.751078125,
+      234.105421875
     ],
     "max": [
-      392.4262622431828,
-      -147.73447170824474,
-      317.91003314878975
+      392.5216875,
+      -147.943109375,
+      317.9476875
     ]
   },
   {
@@ -628,22 +732,26 @@
     "name": "GA(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/GA%28L%29.ngmesh",
     "sourceSha256": "fc9007894ad261a7d10aa641c3e3a92dedeffb15a3152497ceffea7b073d7640",
-    "sha256": "ebdefbe986231786f77a923e32f53281d542eae64eb1d816f3b5364ae267730c",
-    "vertices": 6600,
+    "sha256": "738ac9bf5a7f3d0b4e65985ffb3c0d7203f41281f7906715976cc4555983bf59",
+    "format": "MCN2",
+    "vertices": 1738,
+    "triangles": 3472,
     "originalTriangles": 3472,
+    "interactiveTriangles": 3472,
+    "chunks": 1,
     "center": [
-      481.02126254263914,
-      -142.71603712779415,
-      172.12860726460113
+      481.17326195699025,
+      -142.30157457386346,
+      172.516468048763
     ],
     "min": [
-      470.1049623758065,
+      470.11528125,
       -151.807890625,
-      163.331140625
+      163.329265625
     ],
     "max": [
       490.7455,
-      -132.10071782056303,
+      -132.100578125,
       183.033890625
     ]
   },
@@ -652,23 +760,27 @@
     "name": "GA(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/GA%28R%29.ngmesh",
     "sourceSha256": "479d5a184c3ac6dd2c5bb425f326d1091acce5e39c95fc8798875b214b86c75f",
-    "sha256": "994859d7dc5682a109e7fdd6103db640ec41c49121ad088931520e5a93773ae6",
-    "vertices": 6600,
+    "sha256": "cd0fe6086a3f05303132ceac8fbe57aaa86ccdc497e28df6bceae447036e031f",
+    "format": "MCN2",
+    "vertices": 2146,
+    "triangles": 4296,
     "originalTriangles": 4296,
+    "interactiveTriangles": 4296,
+    "chunks": 1,
     "center": [
-      297.3784263797822,
-      -145.21355438785872,
-      182.33008616688392
+      297.31278930277205,
+      -144.68748205236477,
+      182.3887453911352
     ],
     "min": [
-      287.22789478959487,
+      287.240375,
       -154.060140625,
-      171.30337306027263
+      171.277453125
     ],
     "max": [
-      310.0946836378227,
-      -134.40310793372328,
-      195.536859375
+      310.0815,
+      -134.40565625,
+      195.56265625
     ]
   },
   {
@@ -676,23 +788,27 @@
     "name": "GNG",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/GNG.ngmesh",
     "sourceSha256": "0ca33df0fe19b5d11c83c5e411e2fbcd93a4d62396ff1e3f54fc8a6b9a48e48c",
-    "sha256": "7db005ba84947190d65bb472fe58ed29bd6c6b1cb5aefa1a67c0441e4bc60038",
-    "vertices": 6600,
+    "sha256": "a36187bd0af9b2c06d864e975997a76fc447387e767435eb6c362a5bc5ff3645",
+    "format": "MCN2",
+    "vertices": 264367,
+    "triangles": 529798,
     "originalTriangles": 529798,
+    "interactiveTriangles": 20000,
+    "chunks": 27,
     "center": [
-      388.10208637581036,
-      -240.0457943797867,
-      317.78791485964837
+      389.0529869598911,
+      -237.3406348405077,
+      317.8496564669137
     ],
     "min": [
-      288.9940227817174,
-      -332.2979094084437,
-      255.05424086503672
+      289.02625,
+      -332.2629375,
+      254.57446875
     ],
     "max": [
-      494.01317364380134,
-      -121.88880658882438,
-      378.41415003851574
+      494.00946875,
+      -122.1014296875,
+      378.3066875
     ]
   },
   {
@@ -700,23 +816,27 @@
     "name": "GOR(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/GOR%28L%29.ngmesh",
     "sourceSha256": "6714619b2a1fcf29cc12fbe64e6907b3cd59a0b7b633a36819862edb671ea601",
-    "sha256": "ac30907233be8e63ab739f878f50b2df8b4e56b5b004c7252f0062c7a1e6dac8",
-    "vertices": 6600,
+    "sha256": "76ce22f2ddc56e8adb77f907a4f297f6686c01c603240a490fbd0d3228c0cbaf",
+    "format": "MCN2",
+    "vertices": 16181,
+    "triangles": 32438,
     "originalTriangles": 32438,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      434.92845279139874,
-      -219.03631204240043,
-      186.57826918616968
+      434.462929417603,
+      -218.61241969265708,
+      186.48023121446468
     ],
     "min": [
-      397.16884943427345,
-      -240.32411721260905,
-      165.99677524664642
+      397.4368125,
+      -240.33609375,
+      165.95271875
     ],
     "max": [
-      473.5588212841476,
-      -195.0178084000148,
-      209.41614115133441
+      473.57646875,
+      -195.012328125,
+      209.581625
     ]
   },
   {
@@ -724,23 +844,27 @@
     "name": "GOR(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/GOR%28R%29.ngmesh",
     "sourceSha256": "26ca938d31c8d226c339185b997c367356c7c77bce89f3e6c94cb6abe4c62719",
-    "sha256": "ab4fe3b953fd707658e41d4616276cfc4efd8a5ff3aa80705df5e8f2dd076058",
-    "vertices": 6600,
+    "sha256": "b49b3c8ab2c5585d1ec3fffd2e3c653546b88c0a23c5e29ad14f91aa01113465",
+    "format": "MCN2",
+    "vertices": 14340,
+    "triangles": 28762,
     "originalTriangles": 28762,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      346.11599081944274,
-      -217.8700756753986,
-      191.73147001750834
+      346.956340152111,
+      -217.0698815354788,
+      191.5295877854778
     ],
     "min": [
-      309.1760451243788,
-      -240.74836860446868,
-      173.13072267139017
+      309.0260625,
+      -240.698125,
+      173.09175
     ],
     "max": [
-      381.71078796483425,
-      -194.43680162919793,
-      210.97913744809628
+      381.6998125,
+      -194.336640625,
+      211.078015625
     ]
   },
   {
@@ -748,23 +872,27 @@
     "name": "IB",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/IB.ngmesh",
     "sourceSha256": "599d01c93a71f7b0b05564d988401a52093e1938d101bd36e83d442efcbc3cdc",
-    "sha256": "490c5870e9fdc3e3c0fe03de2bd6d094a37ab88bd09364b157c5251b79bba2ae",
-    "vertices": 6600,
+    "sha256": "b60c9adf6f348fb7df4416ffaa64dd0048882a6d2718350d5c31e3d1c58cb288",
+    "format": "MCN2",
+    "vertices": 42798,
+    "triangles": 85738,
     "originalTriangles": 85738,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      387.7306650829573,
-      -252.03695864250471,
-      170.11846528345384
+      388.30159388216236,
+      -252.76753160742098,
+      169.73361502070668
     ],
     "min": [
-      338.29851941220994,
-      -289.0976791400659,
-      139.00646892940844
+      338.282,
+      -289.0829375,
+      139.170171875
     ],
     "max": [
-      440.50792893989853,
-      -217.0437065746864,
-      195.32369014880433
+      440.7540625,
+      -216.875328125,
+      195.261109375
     ]
   },
   {
@@ -772,23 +900,27 @@
     "name": "ICL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ICL%28L%29.ngmesh",
     "sourceSha256": "5c513853ef2659792ebaa8239dcf10e2412ab883372db83f54c2b165ee806d5f",
-    "sha256": "1855af242e60ca2176f4fef89593e1f8502ae41ccb0534f90d231da1cc5e00ab",
-    "vertices": 6600,
+    "sha256": "c98a1213d096f88601eaee36594ca1542d4a2b30e7365646875e208935cd1a91",
+    "format": "MCN2",
+    "vertices": 42299,
+    "triangles": 84738,
     "originalTriangles": 84738,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      459.3729241171793,
-      -220.82952179266093,
-      153.7035793126469
+      459.071199669322,
+      -220.74835803003722,
+      152.9627023005129
     ],
     "min": [
-      428.52900486417076,
-      -276.20687096069054,
-      116.2162983302087
+      428.39175,
+      -276.3665625,
+      115.828859375
     ],
     "max": [
-      493.8405815630631,
-      -168.99460611679257,
-      186.7741268730946
+      494.2175625,
+      -168.9941875,
+      186.838859375
     ]
   },
   {
@@ -796,23 +928,27 @@
     "name": "ICL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ICL%28R%29.ngmesh",
     "sourceSha256": "8d8c943b42a91eb4ba7d76db606dcef9fc30bdf76026b5a782de2ea488748d2f",
-    "sha256": "17f6c7c72a35ba709033592a4a5a1bef5f1dd635f9203d7cd96a04399cfd9c20",
-    "vertices": 6600,
+    "sha256": "b8580e388187de422446e9668dd13d76825143a2da6153b3d90f0701a2af0d9c",
+    "format": "MCN2",
+    "vertices": 40786,
+    "triangles": 81676,
     "originalTriangles": 81676,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      318.754087095981,
-      -224.39948604179335,
-      159.85213835941815
+      319.0886450750568,
+      -223.57751737153765,
+      159.3470379913608
     ],
     "min": [
-      285.3077686206883,
-      -282.2788293085862,
-      120.71764629976911
+      285.073875,
+      -282.3315625,
+      120.4939375
     ],
     "max": [
-      348.0636952798091,
-      -170.20428876381368,
-      196.73794314348442
+      348.36215625,
+      -170.222484375,
+      196.789
     ]
   },
   {
@@ -820,23 +956,27 @@
     "name": "IPS(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/IPS%28L%29.ngmesh",
     "sourceSha256": "36c04b698680deb81aec5bf9c99177035a3e246be831951d0fbfec06deb12aa4",
-    "sha256": "b10bbc24525e32def409e3a09e86144e3887465627ec5cd07a62f4057302aeb8",
-    "vertices": 6600,
+    "sha256": "f64f3a8117432107af59e43248b6a359efc8db7b8d71edbd9b3e6a9059a9ca2c",
+    "format": "MCN2",
+    "vertices": 36107,
+    "triangles": 72328,
     "originalTriangles": 72328,
+    "interactiveTriangles": 20000,
+    "chunks": 4,
     "center": [
-      450.9240255384271,
-      -279.49390826785776,
-      245.7916331902851
+      451.3538698884563,
+      -279.1842074952603,
+      246.27026495944213
     ],
     "min": [
-      411.98573260299185,
-      -302.5770022333609,
-      203.71933676209144
+      412.0038125,
+      -302.56865625,
+      203.7258125
     ],
     "max": [
-      495.83003891528415,
-      -243.2589720650262,
-      285.92242410668564
+      496.062625,
+      -243.149234375,
+      285.996875
     ]
   },
   {
@@ -844,23 +984,27 @@
     "name": "IPS(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/IPS%28R%29.ngmesh",
     "sourceSha256": "e858f7064e55e9ef45ed07f46bdbb4ec4f6412ac38105f5255610d0bd6887bbe",
-    "sha256": "d30a904a77f6f727b741ffc22175a0f356273e0bea4bf86ce2fb6f4c7076e10f",
-    "vertices": 6600,
+    "sha256": "b2aebec90eedbbefddec9c65a0f2ede182248a424ff47582cd7ada7aedf788fa",
+    "format": "MCN2",
+    "vertices": 38857,
+    "triangles": 77868,
     "originalTriangles": 77868,
+    "interactiveTriangles": 20000,
+    "chunks": 4,
     "center": [
-      331.6447104792092,
-      -282.5282781867581,
-      253.91721258729953
+      331.5608517448624,
+      -282.039006918397,
+      254.45334360966024
     ],
     "min": [
-      285.83638746625456,
-      -307.6492833012636,
-      213.2263572235516
+      286.04021875,
+      -307.7039375,
+      213.2438125
     ],
     "max": [
-      370.2975349263177,
-      -243.22106467763558,
-      293.9559560371268
+      370.6719375,
+      -243.199515625,
+      293.95675
     ]
   },
   {
@@ -868,23 +1012,27 @@
     "name": "LA(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LA%28L%29.ngmesh",
     "sourceSha256": "fc52a2a0274478232f383b00a0607c2c7534dd18390897a291804a8625218208",
-    "sha256": "811c6e53422664ad5d9c71c9c1b99dd7049bf617a2e2ac963ad4814973c282de",
-    "vertices": 6600,
+    "sha256": "12ee8c14945baf3b0b856cdcad4a45469213d204f51b881fad8afcbdb22f4aa4",
+    "format": "MCN2",
+    "vertices": 98790,
+    "triangles": 197594,
     "originalTriangles": 197594,
+    "interactiveTriangles": 20000,
+    "chunks": 10,
     "center": [
-      689.5528325325724,
-      -206.09261560507318,
-      246.61127897773002
+      688.5158780342128,
+      -207.49396325902782,
+      236.32035057168187
     ],
     "min": [
-      636.0921029138949,
-      -255.1362592722204,
-      119.14878827244623
+      636.67175,
+      -255.485515625,
+      118.65015625
     ],
     "max": [
-      741.9372025244129,
-      -152.55996697091385,
-      406.5451986652766
+      741.8080625,
+      -152.064890625,
+      406.41809375
     ]
   },
   {
@@ -892,23 +1040,27 @@
     "name": "LA(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LA%28R%29.ngmesh",
     "sourceSha256": "483b9148217e0ff2990bf2aca62738a71f5fb0202fbcd3a1038a0bdfb99104f2",
-    "sha256": "fe94d8f8deb0d1e51ade530347ed1eee07adf5255d590d332d5ba793ee9c35f6",
-    "vertices": 6600,
+    "sha256": "4d72886467d69eed7dd8b2b370c52136d191e1cc85f8a3b3f2c9515dd62cbdbe",
+    "format": "MCN2",
+    "vertices": 80324,
+    "triangles": 160680,
     "originalTriangles": 160680,
+    "interactiveTriangles": 20000,
+    "chunks": 9,
     "center": [
-      91.38637944785552,
-      -211.55708571209655,
-      289.130902461734
+      92.36160261550954,
+      -211.31200009356644,
+      288.43098250133403
     ],
     "min": [
-      33.01870024744692,
-      -262.21361557451183,
-      144.22683087983623
+      33.0221875,
+      -262.6538125,
+      144.380890625
     ],
     "max": [
-      147.1126520929114,
-      -161.9672679118639,
-      429.4808557529965
+      147.080453125,
+      -162.050703125,
+      429.81865625
     ]
   },
   {
@@ -916,23 +1068,27 @@
     "name": "LAL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LAL%28L%29.ngmesh",
     "sourceSha256": "590fef3345c3ad285b5fe93c10353a7cdba4db12f4fea20a279a6e1994788733",
-    "sha256": "2173eb1d0aac61e5bf67aa62ae094a6109c55473dec81af59e235d13fa238049",
-    "vertices": 6600,
+    "sha256": "0364ac5a6cbf3c75242847182c66a4f326b413b42ee3854166318d411138f1c1",
+    "format": "MCN2",
+    "vertices": 40945,
+    "triangles": 82002,
     "originalTriangles": 82002,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      449.1463759522373,
-      -165.5564808582733,
-      197.92209723528785
+      448.8785181409564,
+      -164.79002871153395,
+      197.33410315934523
     ],
     "min": [
-      402.9161315941503,
-      -208.7731496588856,
-      152.65054738183983
+      402.9765625,
+      -208.799015625,
+      152.583546875
     ],
     "max": [
-      487.3457883306398,
-      -112.48352328625737,
-      245.8102379665023
+      487.16653125,
+      -112.4103671875,
+      245.949203125
     ]
   },
   {
@@ -940,23 +1096,27 @@
     "name": "LAL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LAL%28R%29.ngmesh",
     "sourceSha256": "66d4bf4b6d5836ea0974f49fc807b4cbc173e0bda0d55af17f5b59eecb7793bb",
-    "sha256": "3e99d8b890b990764f6c05761a4eafb07443ecb69e8436faa53a6cecf9b615b7",
-    "vertices": 6600,
+    "sha256": "96b28c6a7684659e22d42a7e0133fad91ecf35f8e6d82bd69a4ed61769c12d85",
+    "format": "MCN2",
+    "vertices": 37585,
+    "triangles": 75348,
     "originalTriangles": 75348,
+    "interactiveTriangles": 20000,
+    "chunks": 4,
     "center": [
-      329.19189712024854,
-      -167.7140765685243,
-      204.7509766814891
+      329.0533200429007,
+      -167.32792423402833,
+      204.56609959841023
     ],
     "min": [
-      291.830201761877,
-      -210.45210943617639,
-      161.86914563688867
+      291.44015625,
+      -210.1756875,
+      161.39903125
     ],
     "max": [
-      376.52077964774054,
-      -124.16756369847751,
-      256.10152469883826
+      376.5744375,
+      -124.05734375,
+      256.000046875
     ]
   },
   {
@@ -964,23 +1124,27 @@
     "name": "LH(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LH%28L%29.ngmesh",
     "sourceSha256": "f63dea1c7dfe97a6d2a2fd91888cd6b8e14ab8979a7c6bc0e9ddf06dccaa8158",
-    "sha256": "d3372581ab41284e2dae1c5f7578e89635115995d731a58ea881908160b86fd2",
-    "vertices": 6600,
+    "sha256": "8daefa46f68abcb206cb3bbcd49b17c9f68829e79f4928fae1b2f95580471899",
+    "format": "MCN2",
+    "vertices": 39983,
+    "triangles": 80046,
     "originalTriangles": 80046,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      548.0561845736823,
-      -232.1149980834668,
-      108.15104314504879
+      549.1814187795446,
+      -232.00529533489293,
+      108.18305866467905
     ],
     "min": [
-      509.292754168619,
-      -263.5442740871045,
-      65.16850314826033
+      509.25478125,
+      -263.66475,
+      65.0366953125
     ],
     "max": [
-      588.3255883911494,
-      -197.3572705488311,
-      158.42872428266907
+      588.2874375,
+      -197.373296875,
+      158.62903125
     ]
   },
   {
@@ -988,23 +1152,27 @@
     "name": "LH(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LH%28R%29.ngmesh",
     "sourceSha256": "85118c1c26f756b0dcad328a76c4d837c0c9efd2ec042d04d7db70494e08c9c8",
-    "sha256": "9c6e0b88b21b4308ce0f73d14e639c3d2e29fb9811af46a6731f9775da6ab70b",
-    "vertices": 6600,
+    "sha256": "4bac94f428f84046da78b095f373cc8b99ddeaed54130492c27fde4515be931e",
+    "format": "MCN2",
+    "vertices": 39048,
+    "triangles": 78196,
     "originalTriangles": 78196,
+    "interactiveTriangles": 20000,
+    "chunks": 4,
     "center": [
-      225.7875037518595,
-      -238.56144929882248,
-      118.69938490829671
+      224.62438843938747,
+      -238.04991951692415,
+      119.40400908917329
     ],
     "min": [
-      187.45570575457373,
-      -272.50777362479454,
-      77.0734440310905
+      187.4029375,
+      -272.60140625,
+      76.9668671875
     ],
     "max": [
-      262.86103385848384,
-      -203.6907247649527,
-      169.6566761630133
+      262.85628125,
+      -203.571796875,
+      169.86590625
     ]
   },
   {
@@ -1012,23 +1180,27 @@
     "name": "LO(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LO%28L%29.ngmesh",
     "sourceSha256": "6d48143de082841ff4c3ba2e8802f51d8622212d162fb6c27b2b43d6c9689424",
-    "sha256": "1d77658747e74552c921e34c8fd20c51c16142b11e0b0f3f7cf0fd334eb7ba37",
-    "vertices": 6600,
+    "sha256": "606cfdeac831c242b16d91805a431f064db03d9a14fe6a01ba621a511a313deb",
+    "format": "MCN2",
+    "vertices": 112479,
+    "triangles": 225388,
     "originalTriangles": 225388,
+    "interactiveTriangles": 20000,
+    "chunks": 12,
     "center": [
-      564.7002150438452,
-      -278.22636000143376,
-      242.7867387823673
+      564.9118030446231,
+      -275.89631252694693,
+      243.27442513158255
     ],
     "min": [
-      505.1631372125781,
-      -325.36237903658485,
-      137.69429032624694
+      505.34765625,
+      -325.61125,
+      137.78565625
     ],
     "max": [
-      620.887635062528,
-      -221.9022220956685,
-      336.75815274104286
+      620.9888125,
+      -221.86675,
+      336.8755
     ]
   },
   {
@@ -1036,23 +1208,27 @@
     "name": "LO(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LO%28R%29.ngmesh",
     "sourceSha256": "554ff91f89fc81e444ff5f5a8ce5ebc43f80a6440b3701d4f439929a39880171",
-    "sha256": "40affc26113ecfb46c499e995a0b0fdf1d0fa8f347112db7e3470303baf34028",
-    "vertices": 6600,
+    "sha256": "ab0f726a83f285aa855231617dfdbd8e8cd143a138d0ac174d991b514bf7cd1a",
+    "format": "MCN2",
+    "vertices": 98541,
+    "triangles": 197082,
     "originalTriangles": 197082,
+    "interactiveTriangles": 20000,
+    "chunks": 10,
     "center": [
-      205.7758740817321,
-      -284.0727446550757,
-      250.2812437859856
+      209.6268179384101,
+      -282.32032403200617,
+      249.60508541971433
     ],
     "min": [
-      150.40166149518876,
-      -326.73999968076123,
-      148.3608091199116
+      150.32709375,
+      -327.423125,
+      147.739578125
     ],
     "max": [
-      276.28247980550697,
-      -232.17987291894252,
-      344.91181555768117
+      276.457375,
+      -232.19228125,
+      345.2791875
     ]
   },
   {
@@ -1060,23 +1236,27 @@
     "name": "LOP(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LOP%28L%29.ngmesh",
     "sourceSha256": "a2febfd508678d5b373b8b8275d6158c93c80583024b9ed44fb5096ee944047c",
-    "sha256": "a94355be13f4c94a6bdc6aed07037bea4a6492cab1929f45f7f8af7bb1bb1b26",
-    "vertices": 6600,
+    "sha256": "3a1a14f871f4b22659711459d31d6abc1d637d763703026d029b140ffafa8923",
+    "format": "MCN2",
+    "vertices": 108725,
+    "triangles": 217846,
     "originalTriangles": 217846,
+    "interactiveTriangles": 20000,
+    "chunks": 11,
     "center": [
-      598.5371223481259,
-      -312.088102961165,
-      259.3887883405945
+      598.5958466319726,
+      -311.08177710536927,
+      260.52136905294293
     ],
     "min": [
-      524.7607618605311,
-      -330.76872405559095,
-      142.80289631934681
+      524.8390625,
+      -330.75203125,
+      142.88225
     ],
     "max": [
-      661.283922664386,
-      -285.38271370548523,
-      355.1213727479427
+      661.232,
+      -285.2856875,
+      355.46665625
     ]
   },
   {
@@ -1084,23 +1264,27 @@
     "name": "LOP(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/LOP%28R%29.ngmesh",
     "sourceSha256": "dae3ba763760bbf1c4f7e1a23027c3b4463da5b6095a8dd0bb12218051ec8b1c",
-    "sha256": "33cd537ea98f39639d84efc379d4d11c72253a7f8687312d5ac6ddbc639f695a",
-    "vertices": 6600,
+    "sha256": "0e0dab2033f51ee49dedcac7a913f18b5635132c257820de43964ef776d74df1",
+    "format": "MCN2",
+    "vertices": 52726,
+    "triangles": 105450,
     "originalTriangles": 105450,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      180.57766373319222,
-      -316.68885285213463,
-      273.10848364864813
+      181.0731014498906,
+      -317.5893540627475,
+      270.7697503707217
     ],
     "min": [
-      114.43188240504298,
-      -339.89551803571857,
-      159.33246942639292
+      114.2499453125,
+      -339.968,
+      159.53996875
     ],
     "max": [
-      254.1115437952564,
-      -295.47254561245035,
-      364.57290816955503
+      255.108921875,
+      -295.1691875,
+      365.22234375
     ]
   },
   {
@@ -1108,23 +1292,27 @@
     "name": "ME(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ME%28L%29.ngmesh",
     "sourceSha256": "c58dc35e34b52db11caf6a3bf328689acf2233bd2b3987e49d8a32ec5fd6c81a",
-    "sha256": "8e6c4936eaad5dcaf000dcfb7658acd4fb204c0f051110a2a5ff7352e495436e",
-    "vertices": 6600,
+    "sha256": "cff323bedaae1fc3f5241ef812e6198b5cf4212f10a68197b41cafeafe916e31",
+    "format": "MCN2",
+    "vertices": 284407,
+    "triangles": 570948,
     "originalTriangles": 570948,
+    "interactiveTriangles": 20000,
+    "chunks": 29,
     "center": [
-      642.7978077511501,
-      -257.3086379691918,
-      252.21355186415258
+      639.5658731984471,
+      -255.53076551210157,
+      255.0153982462886
     ],
     "min": [
-      545.8229932054494,
-      -328.91780965368497,
-      106.92703090726998
+      546.348375,
+      -328.6154375,
+      106.5693125
     ],
     "max": [
-      723.7654869006758,
-      -176.51714299734257,
-      397.98900221518784
+      724.2163125,
+      -176.466546875,
+      398.50765625
     ]
   },
   {
@@ -1132,23 +1320,27 @@
     "name": "ME(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ME%28R%29.ngmesh",
     "sourceSha256": "f3996c42a7211915b64ef679e238c727e15792e60ef34917f17b19027f66ac94",
-    "sha256": "eb0c08b75e744789e1b6d7fbf4999121932a91fad0185ef8c0b5cbe35245f758",
-    "vertices": 6600,
+    "sha256": "141e02f8f8b4d7685cff8a4a88fcb1ab2a6dd14efacd36fc74268985b8758ce5",
+    "format": "MCN2",
+    "vertices": 208900,
+    "triangles": 417792,
     "originalTriangles": 417792,
+    "interactiveTriangles": 20000,
+    "chunks": 21,
     "center": [
-      136.53425952126298,
-      -267.31639384744733,
-      283.3061933494802
+      136.6780764691932,
+      -267.6436895441919,
+      279.58186260146505
     ],
     "min": [
-      44.82742777878467,
-      -340.28033081317875,
-      116.66797231253778
+      44.817953125,
+      -340.9901875,
+      117.0129375
     ],
     "max": [
-      234.676093830967,
-      -187.27251883325408,
-      418.00573362629893
+      234.38775,
+      -186.880671875,
+      418.47553125
     ]
   },
   {
@@ -1156,23 +1348,27 @@
     "name": "NO",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/NO.ngmesh",
     "sourceSha256": "5b2d88300f5b217abf87dcbf4fcda06f90d8c22fb3ddf9007b1061552dd0b7d6",
-    "sha256": "3cabd0de0bc331dc72a92390718349c4b1e475c4a0da9e0226ecc36b9ed81980",
-    "vertices": 6600,
+    "sha256": "558a542fdb3411caec18ceb3ee3a9841f034600f83cc5dc91dfc0e5097705247",
+    "format": "MCN2",
+    "vertices": 5994,
+    "triangles": 11992,
     "originalTriangles": 11992,
+    "interactiveTriangles": 11992,
+    "chunks": 1,
     "center": [
-      389.303060475011,
-      -188.46566374560365,
-      195.2341759806436
+      389.2617145583074,
+      -187.94061939543695,
+      195.21302881527376
     ],
     "min": [
-      372.2955689726388,
-      -212.77607470587873,
-      179.39166384025404
+      372.24740625,
+      -212.72834375,
+      179.463546875
     ],
     "max": [
-      406.5094895686091,
-      -171.01042323127513,
-      210.60550001958902
+      406.5190625,
+      -171.00546875,
+      210.682734375
     ]
   },
   {
@@ -1180,23 +1376,27 @@
     "name": "PB",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PB.ngmesh",
     "sourceSha256": "93314b04a52d498f7b60f2f2ea5e91ef9d5c36d9ad7c32a4f52d127299eba0ba",
-    "sha256": "1f25032d26af09b7e563674a2cc98432aeb8c7b69653da13362e402085461a2a",
-    "vertices": 6600,
+    "sha256": "438ff37c01f98cf8955f29e10499ff00014604e5f40c61440ff0410bac8a7ff3",
+    "format": "MCN2",
+    "vertices": 15944,
+    "triangles": 31914,
     "originalTriangles": 31914,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      389.14109842800616,
-      -257.8475883978047,
-      130.056570298765
+      388.8631665085609,
+      -257.46946630589935,
+      129.9568164047797
     ],
     "min": [
-      330.89084623505255,
-      -281.3880358145968,
-      108.83002718945687
+      330.8581875,
+      -281.51434375,
+      108.5688984375
     ],
     "max": [
-      446.9692801214179,
-      -239.52655885300936,
-      157.45789764472488
+      446.97853125,
+      -239.613375,
+      157.4386875
     ]
   },
   {
@@ -1204,23 +1404,27 @@
     "name": "PED(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PED%28L%29.ngmesh",
     "sourceSha256": "fa6bd76349c8dbaed77c74539860c0d4ca435b47c3e941f4aa022bb55dbec18f",
-    "sha256": "085a614d9454a0b4c8d77c04adf016c30d55624ffc92b53d76ebceeedf7bf43e",
-    "vertices": 6600,
+    "sha256": "5e052217e05a0d4f90f3b19116385a37830f4bae8c0985bbfc326ce9544303b5",
+    "format": "MCN2",
+    "vertices": 12806,
+    "triangles": 25648,
     "originalTriangles": 25648,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      484.4157464113983,
-      -207.99085539121248,
-      143.3993916922719
+      484.27791056682287,
+      -205.73937465226268,
+      143.91529375207378
     ],
     "min": [
-      469.3989741401996,
-      -259.242671815951,
-      126.69982229249614
+      469.3680625,
+      -259.212546875,
+      126.7055703125
     ],
     "max": [
-      499.62965704915325,
-      -165.8223862770742,
-      162.3260410222588
+      499.857625,
+      -165.782640625,
+      162.2475
     ]
   },
   {
@@ -1228,23 +1432,27 @@
     "name": "PED(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PED%28R%29.ngmesh",
     "sourceSha256": "16472d13861d828aa336538efdaf2816727d8439ca397de8a52997531834a107",
-    "sha256": "c365c033b143836315637f8d6f777902b5edddd91d4c715e0d72f982b61be513",
-    "vertices": 6600,
+    "sha256": "9647a8ebefd6ff7f7aba2c2766de97275e0215c7a4b6d88903d69f8079859642",
+    "format": "MCN2",
+    "vertices": 12655,
+    "triangles": 25348,
     "originalTriangles": 25348,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      293.5427159899617,
-      -210.60668827550077,
-      152.74125790963103
+      293.6758945327942,
+      -208.08410653027468,
+      153.41408434783682
     ],
     "min": [
-      278.3231240001785,
-      -264.28668572701315,
-      134.40461497695853
+      278.397125,
+      -264.27478125,
+      134.440109375
     ],
     "max": [
-      309.1709193986308,
-      -168.2539525559832,
-      172.96347158065421
+      309.18246875,
+      -168.128515625,
+      173.018875
     ]
   },
   {
@@ -1252,23 +1460,27 @@
     "name": "PLP(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PLP%28L%29.ngmesh",
     "sourceSha256": "4963680bca23d3c7e54efba658831ed101609f61f965f39e795227d1fda58d69",
-    "sha256": "058c5ba4096eda5b03f55de654392fa89ea4c9fec42972bf8161e5b387ecb143",
-    "vertices": 6600,
+    "sha256": "f4225ce53b681baa712874c87103ac623b728dd8130bf50327548c983d702a05",
+    "format": "MCN2",
+    "vertices": 58632,
+    "triangles": 117438,
     "originalTriangles": 117438,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      502.7829501500131,
-      -251.8186382206697,
-      172.3407097625166
+      502.7875466426178,
+      -251.4139910863492,
+      172.64281428030466
     ],
     "min": [
-      439.1342877414626,
-      -296.600238458933,
-      104.87375945570572
+      439.045125,
+      -296.39915625,
+      104.83559375
     ],
     "max": [
-      554.9284016465007,
-      -209.39087626628373,
-      240.11122932733255
+      554.947,
+      -208.840421875,
+      240.472890625
     ]
   },
   {
@@ -1276,23 +1488,27 @@
     "name": "PLP(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PLP%28R%29.ngmesh",
     "sourceSha256": "3a57e93e8058826b4cffb0d89517165c7915c907e39c4a6701e30ac693bf25b6",
-    "sha256": "9688e6625525357db9e2ea3b1ce7407c93b69ccba4c07dc3e3b8bd78f82a905d",
-    "vertices": 6600,
+    "sha256": "7a4f1edebe5f3b99279e7e613e6d56f9a7dce94ddfeab3d5e8f8e3245be17c61",
+    "format": "MCN2",
+    "vertices": 65211,
+    "triangles": 130644,
     "originalTriangles": 130644,
+    "interactiveTriangles": 20000,
+    "chunks": 7,
     "center": [
-      274.9191900285994,
-      -256.49192039825994,
-      182.0496545123948
+      275.29176991300403,
+      -255.8494473107015,
+      182.41861533498184
     ],
     "min": [
-      219.59968902918163,
-      -297.30890047409326,
-      115.05555945848766
+      219.702625,
+      -297.4731875,
+      115.033640625
     ],
     "max": [
-      341.63610825296445,
-      -213.148568408291,
-      248.49279065842228
+      341.2416875,
+      -213.109734375,
+      248.501
     ]
   },
   {
@@ -1300,23 +1516,27 @@
     "name": "PRW",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PRW.ngmesh",
     "sourceSha256": "ebad05f31b7e30a4284f9e9a1b9be45c193b411438e8309904d3e07348bcc72b",
-    "sha256": "e2316c550943a583f3bc8d75572043f2cea821edeebf1302026591f567fdb7de",
-    "vertices": 6600,
+    "sha256": "cd07d70ad685b0f42dc0e50dc870108db54db4c42a35ad9f1d9ac21e360ed9ac",
+    "format": "MCN2",
+    "vertices": 32952,
+    "triangles": 65998,
     "originalTriangles": 65998,
+    "interactiveTriangles": 20000,
+    "chunks": 4,
     "center": [
-      387.77255545411305,
-      -153.6363429795466,
-      281.25067696546785
+      387.35544527741087,
+      -153.15227742981313,
+      281.9498587064136
     ],
     "min": [
-      330.9155887420747,
-      -181.2717139641046,
-      238.51937460099396
+      330.96115625,
+      -181.246796875,
+      238.004078125
     ],
     "max": [
-      448.22650107303326,
-      -125.5532602617944,
-      307.2017293968306
+      448.14871875,
+      -125.2568671875,
+      307.375375
     ]
   },
   {
@@ -1324,23 +1544,27 @@
     "name": "PVLP(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PVLP%28L%29.ngmesh",
     "sourceSha256": "e978a41d62dab72040685bd079e3794b129c0167eecab5daad3951b6f01ca899",
-    "sha256": "958bcfaabfd4df273f1be07ba57739c70d253d197a9b75e7182e65aa95d1f5ee",
-    "vertices": 6600,
+    "sha256": "f2cda4cfea526934538f6dc280f5e826a699dba0fcc8c014b30725b2e07c9d19",
+    "format": "MCN2",
+    "vertices": 64229,
+    "triangles": 128704,
     "originalTriangles": 128704,
+    "interactiveTriangles": 20000,
+    "chunks": 7,
     "center": [
-      520.0834064977478,
-      -210.56454111820364,
-      200.15073806326305
+      522.5466585182559,
+      -209.97540351783167,
+      200.27798898448393
     ],
     "min": [
-      462.8255484952333,
-      -245.34471806889567,
-      147.994592098065
+      462.3421875,
+      -245.247703125,
+      147.635265625
     ],
     "max": [
-      584.9437048266074,
-      -155.6330258986117,
-      258.8043475181524
+      584.8410625,
+      -155.692265625,
+      258.6404375
     ]
   },
   {
@@ -1348,23 +1572,27 @@
     "name": "PVLP(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/PVLP%28R%29.ngmesh",
     "sourceSha256": "d445ebb1342a03d9d7da8c1bea0355c001fb36c9f2fdcbbe34a127cf6579996f",
-    "sha256": "59b9f9aab799852b25d8c5ef9cb5ee7ca38eb2872386d9a0b88445ad4d8d48fd",
-    "vertices": 6600,
+    "sha256": "0edc60d4a9dada01531a5dbf29e2bd541098f8ea2ba71f97e2be2f9ffbac1478",
+    "format": "MCN2",
+    "vertices": 60555,
+    "triangles": 121260,
     "originalTriangles": 121260,
+    "interactiveTriangles": 20000,
+    "chunks": 7,
     "center": [
-      258.73272647126277,
-      -216.50906507631967,
-      209.67727338353123
+      256.6549827396037,
+      -216.37786326092942,
+      208.86117215728459
     ],
     "min": [
-      193.5738315138305,
-      -248.7194247053463,
-      155.34732917171345
+      193.545078125,
+      -248.662796875,
+      155.189109375
     ],
     "max": [
-      319.1805658478725,
-      -163.3075987889105,
-      265.9995328476994
+      318.90103125,
+      -163.43775,
+      266.39990625
     ]
   },
   {
@@ -1372,13 +1600,17 @@
     "name": "ROB(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ROB%28L%29.ngmesh",
     "sourceSha256": "d3b4b766a0f5b0292fd543113798a0a9077864cd4d2b727e3fd950761b830cf4",
-    "sha256": "a3cfa7292b078042c5a09b0935bd1812436fb43c689cca63c838b00043533092",
-    "vertices": 6600,
+    "sha256": "3c0dbeba5aae9f30854270a193555e83827f85bbb6aad974a0e369bbbc431a06",
+    "format": "MCN2",
+    "vertices": 1237,
+    "triangles": 2474,
     "originalTriangles": 2474,
+    "interactiveTriangles": 2474,
+    "chunks": 1,
     "center": [
-      463.3874263952308,
-      -127.43942734423844,
-      165.66814897545078
+      463.31456843674243,
+      -127.1930821354587,
+      165.7068663348827
     ],
     "min": [
       453.6465625,
@@ -1396,9 +1628,13 @@
     "name": "ROB(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/ROB%28R%29.ngmesh",
     "sourceSha256": "4181350a47ccf13f5fe1b9c35ce09b17e6c520cb33fa1f31fc3d93e2328d3fca",
-    "sha256": "b8ede5b2a910e3c06c4fd0fe58769db3817be11548174c9dc20d38a2e73598df",
-    "vertices": 6450,
+    "sha256": "8afe91bbd0927d017338d6d2780a6eb5218e57f6176d1b13673fb855528affc9",
+    "format": "MCN2",
+    "vertices": 1076,
+    "triangles": 2150,
     "originalTriangles": 2150,
+    "interactiveTriangles": 2150,
+    "chunks": 1,
     "center": [
       313.6457770388016,
       -130.99667493901015,
@@ -1420,9 +1656,13 @@
     "name": "RUB(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/RUB%28L%29.ngmesh",
     "sourceSha256": "e592b09cc5c92f1bc7dde172266c5a0251e84e7d58b9792599c1030bc67934a9",
-    "sha256": "6038eb429e833091335c5b9268c0fc10565dbbc213b1da8cb5277b3a392d7ac0",
-    "vertices": 6570,
+    "sha256": "aa05bec64067406f5f22babbd078567adfc2369934ba3c5eaf08995d5e550470",
+    "format": "MCN2",
+    "vertices": 1097,
+    "triangles": 2190,
     "originalTriangles": 2190,
+    "interactiveTriangles": 2190,
+    "chunks": 1,
     "center": [
       446.4970142433917,
       -139.04625110386286,
@@ -1444,9 +1684,13 @@
     "name": "RUB(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/RUB%28R%29.ngmesh",
     "sourceSha256": "de049791cec5542729a9e99458b65a53d453eb6b3b0f51c2222795b1877aa8bf",
-    "sha256": "f2ef0afd47733d4a713d8f5904adb371692107bc2a7dd4043715a1d278d73871",
-    "vertices": 6432,
+    "sha256": "193997adce7cca21e238d2916f863e165c44c17c59f84c3c1b49839f5612121e",
+    "format": "MCN2",
+    "vertices": 1074,
+    "triangles": 2144,
     "originalTriangles": 2144,
+    "interactiveTriangles": 2144,
+    "chunks": 1,
     "center": [
       330.1898615281655,
       -142.54599687209034,
@@ -1468,23 +1712,27 @@
     "name": "SAD",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SAD.ngmesh",
     "sourceSha256": "4a53174d2ea22eb296b6638e1073e5de4e79c173c93c8db4674de70aa1947108",
-    "sha256": "a28ed2e86e779548df35004294c49e78b8b8749995b2e9379bc59fc8d98c929a",
-    "vertices": 6600,
+    "sha256": "085e1b270a8f19fa9937b65222a1ea6d8f68ac59e3c3649e2fb0b81652f5331b",
+    "format": "MCN2",
+    "vertices": 187145,
+    "triangles": 375036,
     "originalTriangles": 375036,
+    "interactiveTriangles": 20000,
+    "chunks": 19,
     "center": [
-      391.50434593034595,
-      -208.24499640701785,
-      289.97086054138106
+      390.6022802345778,
+      -207.77221259610008,
+      290.25900229325424
     ],
     "min": [
-      266.0139598538724,
-      -264.74975530596174,
-      243.3188800077871
+      265.302,
+      -264.58453125,
+      242.0270625
     ],
     "max": [
-      514.1197273087811,
-      -135.77282845525565,
-      331.6874296476982
+      514.99803125,
+      -135.9959375,
+      332.03028125
     ]
   },
   {
@@ -1492,23 +1740,27 @@
     "name": "SCL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SCL%28L%29.ngmesh",
     "sourceSha256": "44dccaf21279e32dc6ac6c0f7bf26802823f84b3e697bfe27862adb329d662d3",
-    "sha256": "4debb497204cf97367272f7f59251da2fa053544b4349aeec9b7966ed03b445a",
-    "vertices": 6600,
+    "sha256": "9112d00b1b736dffbaf1c48d0049188e759d9a61a37e0aeddcf0dfb6fdef98d8",
+    "format": "MCN2",
+    "vertices": 42575,
+    "triangles": 85268,
     "originalTriangles": 85268,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      482.8281183820409,
-      -212.27336597406665,
-      119.78058317960426
+      482.1533798377833,
+      -211.6916164881829,
+      120.27889649332036
     ],
     "min": [
-      427.1225973664042,
-      -261.9261528934503,
-      89.50422834953731
+      426.8085625,
+      -262.11340625,
+      89.3528125
     ],
     "max": [
-      526.1039912899589,
-      -156.8565256381591,
-      147.86371376846182
+      526.2071875,
+      -157.285515625,
+      147.937828125
     ]
   },
   {
@@ -1516,23 +1768,27 @@
     "name": "SCL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SCL%28R%29.ngmesh",
     "sourceSha256": "2b76e5fe1dc1f1f263d396e2d7de52116f0d095e9e4e7932c9c8e04cb30e2d27",
-    "sha256": "0585ee27104117c4b81c3a8070b7c9740348197ca98b34adcb6bca9e3204e990",
-    "vertices": 6600,
+    "sha256": "9a21fce7be4407784ab3bd5222bf554f911102547b5b8ca6ffe23719e375c9ad",
+    "format": "MCN2",
+    "vertices": 44017,
+    "triangles": 88166,
     "originalTriangles": 88166,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      292.6504818866089,
-      -217.02205753114055,
-      127.35159385832876
+      292.7577013202984,
+      -215.90334451994218,
+      128.23637869654834
     ],
     "min": [
-      246.93540585565682,
-      -269.875882138277,
-      96.566314290178
+      246.861078125,
+      -270.0901875,
+      96.527265625
     ],
     "max": [
-      346.9266696128745,
-      -164.85436026647466,
-      158.42917630136793
+      346.9338125,
+      -164.710875,
+      158.682328125
     ]
   },
   {
@@ -1540,23 +1796,27 @@
     "name": "SIP(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SIP%28L%29.ngmesh",
     "sourceSha256": "a1f5fe2534de80986c16259c9fc1be42d617f4598b4ccdab4b7a3e806cc30258",
-    "sha256": "57091651d9e7794e0e9c4ef4d8befd093de712432d7fbee930b3149e2ad2526a",
-    "vertices": 6600,
+    "sha256": "6e2be8382c592c5228f1f0cdbd6efb3e978b772dbd47b343cf9562e70ed9d124",
+    "format": "MCN2",
+    "vertices": 43667,
+    "triangles": 87496,
     "originalTriangles": 87496,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      465.20849380365496,
-      -169.68283010089158,
-      98.26248598536873
+      464.52129484507935,
+      -170.26884594291053,
+      97.04929959149253
     ],
     "min": [
-      432.6666453090497,
-      -219.72941121994862,
-      47.01644654469787
+      432.6319375,
+      -219.89884375,
+      46.94246875
     ],
     "max": [
-      516.4981063405515,
-      -125.10175732558527,
-      147.6273317947978
+      516.42775,
+      -125.2348203125,
+      147.635578125
     ]
   },
   {
@@ -1564,23 +1824,27 @@
     "name": "SIP(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SIP%28R%29.ngmesh",
     "sourceSha256": "f6deb94b284a20072255f0fa76053a390ad5b7caedb1d9601168b45ac99ab357",
-    "sha256": "1dc7f138487f7c2ff92217c870f82975666ac9b4782db0606c8f169fed6b2d7f",
-    "vertices": 6600,
+    "sha256": "d72f7cfd304999ce451015e16219d84a342312daf2a83891ae379d61d8ce01cc",
+    "format": "MCN2",
+    "vertices": 52425,
+    "triangles": 105300,
     "originalTriangles": 105300,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      307.6200087948733,
-      -167.42542906390162,
-      102.09755532345113
+      307.7683142858826,
+      -167.80600442164535,
+      101.66658973853909
     ],
     "min": [
-      257.78553132009745,
-      -220.24846622154357,
-      50.12722956944918
+      257.69165625,
+      -220.3943125,
+      50.0843359375
     ],
     "max": [
-      339.3130089348948,
-      -118.23861808604083,
-      158.82068170615815
+      339.8419375,
+      -118.54378125,
+      158.629265625
     ]
   },
   {
@@ -1588,23 +1852,27 @@
     "name": "SLP(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SLP%28L%29.ngmesh",
     "sourceSha256": "788f764098f0ef6db9a0475c0614cfca56a5531eaa40afbaf23fa8f431591d27",
-    "sha256": "3047c45468680bd9cfc11eabc40164a4c9f7ab8f3067c1b18e8e28e7ff2f494f",
-    "vertices": 6600,
+    "sha256": "5704b37e2dc2dbe15905091d08e7ef20f622cecf1085f54ca1935fb14d670fb0",
+    "format": "MCN2",
+    "vertices": 61066,
+    "triangles": 122328,
     "originalTriangles": 122328,
+    "interactiveTriangles": 20000,
+    "chunks": 7,
     "center": [
-      509.94329391157333,
-      -207.00350791357184,
-      90.12964904860709
+      510.16122324359804,
+      -205.94036119372984,
+      88.85964821758043
     ],
     "min": [
-      444.67344448787605,
-      -263.5091966562376,
-      39.140555745262404
+      444.68003125,
+      -263.9219375,
+      38.91728125
     ],
     "max": [
-      567.9762425299494,
-      -159.33652831857356,
-      145.07198015812017
+      568.15875,
+      -159.48275,
+      145.32265625
     ]
   },
   {
@@ -1612,23 +1880,27 @@
     "name": "SLP(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SLP%28R%29.ngmesh",
     "sourceSha256": "c39cd49d55a38c77933e6de547bd08d17523019bb2db599e45ac267a20eb1e1c",
-    "sha256": "70c97fc695e56b9c5d312c0a0f5854272f8fa46104a4d55b387bf733aa08da9a",
-    "vertices": 6600,
+    "sha256": "692d8af2df23598825745de32bc448a97668043e75dc781786f9c5aee57be17b",
+    "format": "MCN2",
+    "vertices": 66997,
+    "triangles": 134226,
     "originalTriangles": 134226,
+    "interactiveTriangles": 20000,
+    "chunks": 7,
     "center": [
-      265.0022045529028,
-      -211.7317350887726,
-      96.86660543732671
+      263.93616532829833,
+      -209.68134137209273,
+      96.43204991717268
     ],
     "min": [
-      209.03221784087597,
-      -272.24132101440375,
-      43.42082809605065
+      208.979359375,
+      -272.6193125,
+      43.52019140625
     ],
     "max": [
-      321.4300546591309,
-      -162.12208710930224,
-      153.44124035650523
+      321.2798125,
+      -162.096328125,
+      153.572125
     ]
   },
   {
@@ -1636,23 +1908,27 @@
     "name": "SMP(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SMP%28L%29.ngmesh",
     "sourceSha256": "a10680f5d6c9dbd4386019cac1f32c103eac287c80c1d8c51425ae38ba938b24",
-    "sha256": "5e4ff05dd7b6c8ff93cb6be071c8c99fe8d5f1e4f713d96dbc0072f0c90bb183",
-    "vertices": 6600,
+    "sha256": "2bb025b8c45ac4ba04537fac4ff29e49d4516b66818141fe6275d408ad57b691",
+    "format": "MCN2",
+    "vertices": 56442,
+    "triangles": 113022,
     "originalTriangles": 113022,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      424.27356185641486,
-      -183.09476358085277,
-      96.31767035772978
+      424.4100746612688,
+      -182.10013921273662,
+      95.79997805525316
     ],
     "min": [
-      386.13870979152637,
-      -249.13861180940953,
-      47.286488404169994
+      385.281375,
+      -249.839171875,
+      47.19501171875
     ],
     "max": [
-      466.03145334512374,
-      -105.69563730586798,
-      136.32284840582622
+      466.1118125,
+      -105.6382421875,
+      136.642328125
     ]
   },
   {
@@ -1660,23 +1936,27 @@
     "name": "SMP(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SMP%28R%29.ngmesh",
     "sourceSha256": "c452ecee8d8933e6dc14f9428a2c094d6d996768e13b99ff29f5ca613e8da9fd",
-    "sha256": "aa374ca293c5f4f8847b7a041ea9cc34d15f3e55c29e82e99a3fffad65009aca",
-    "vertices": 6600,
+    "sha256": "74e91284f01f5ad2805597e91407ce944b254d7ee1bc257432756b2651aaab0d",
+    "format": "MCN2",
+    "vertices": 56738,
+    "triangles": 113702,
     "originalTriangles": 113702,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      346.4580346486232,
-      -183.05072147020036,
-      100.10078031787042
+      346.171019018338,
+      -181.04881050907832,
+      99.69379439953161
     ],
     "min": [
-      303.7695107851227,
-      -251.70219293644487,
-      50.9353104837944
+      303.931375,
+      -252.615125,
+      50.77375
     ],
     "max": [
-      386.8547194456401,
-      -103.95389869130182,
-      139.890478693188
+      386.81196875,
+      -103.7012734375,
+      140.224703125
     ]
   },
   {
@@ -1684,23 +1964,27 @@
     "name": "SPS(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SPS%28L%29.ngmesh",
     "sourceSha256": "1127c7ef9490525a25f586e3ce67d2022fb7f33df55c6a7626717459f28555d4",
-    "sha256": "02d64f77fb245b6500129ada325160bbe56db118bc696ed91ab77c1dc8daad1f",
-    "vertices": 6600,
+    "sha256": "f54a6bf653334b6ef864dba060734bec9481e6cd68ee9c8255a08f7431ca89ca",
+    "format": "MCN2",
+    "vertices": 55273,
+    "triangles": 110744,
     "originalTriangles": 110744,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      440.60202480194425,
-      -259.0493223952955,
-      203.42645076185966
+      441.15962219856624,
+      -258.8712949091914,
+      203.27515496942414
     ],
     "min": [
-      387.3192226592495,
-      -294.3960736302493,
-      159.6962570156464
+      387.3310625,
+      -294.144,
+      159.494796875
     ],
     "max": [
-      484.9664309923973,
-      -217.4345869057581,
-      259.23334517462297
+      485.56259375,
+      -217.029875,
+      259.715375
     ]
   },
   {
@@ -1708,23 +1992,27 @@
     "name": "SPS(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/SPS%28R%29.ngmesh",
     "sourceSha256": "46fa92fc6e9ce025fb8639cb65361e152d1ae978d585227714f177d1e97320d7",
-    "sha256": "5d41df986e4fa7c09f81c1adb082f31bd358e8fa3a7a0bbe935305739ae0d02a",
-    "vertices": 6600,
+    "sha256": "e26cff6761bbfe2f64e851aae5c48a73810785a7ba8207efc4d127636db731da",
+    "format": "MCN2",
+    "vertices": 59262,
+    "triangles": 118708,
     "originalTriangles": 118708,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      338.755028575002,
-      -261.94746401316945,
-      211.03831744523146
+      338.05064589450467,
+      -261.69352181652044,
+      210.9111983445882
     ],
     "min": [
-      295.2574972355886,
-      -299.9981807346977,
-      165.4583542552634
+      294.722125,
+      -300.1674375,
+      165.420421875
     ],
     "max": [
-      388.50628252605867,
-      -216.36132838694417,
-      264.7954462377771
+      388.35053125,
+      -216.439,
+      265.79009375
     ]
   },
   {
@@ -1732,23 +2020,27 @@
     "name": "VES(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/VES%28L%29.ngmesh",
     "sourceSha256": "dbb758a3fbb53a74eeb78753f6256cf2d9c867429b82c8ae95464d3f2bfea785",
-    "sha256": "ee4feb79dc5232504be42891d890ec8e091819d1a81449e0578f907ec55d2e08",
-    "vertices": 6600,
+    "sha256": "eaa91cfa98a4eedba32539c5b71e743a2d6645a7ebb3b29b9b195074fd8528c8",
+    "format": "MCN2",
+    "vertices": 44421,
+    "triangles": 88990,
     "originalTriangles": 88990,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      434.1355076327325,
-      -204.65930115290703,
-      237.78955916156036
+      434.5345538427832,
+      -204.1630713468178,
+      238.04992653882778
     ],
     "min": [
-      392.0209800844874,
-      -245.1523944266516,
-      188.30061041012732
+      392.20696875,
+      -245.23590625,
+      188.037171875
     ],
     "max": [
-      474.6719938965668,
-      -158.23053949840835,
-      281.1411415853601
+      474.77196875,
+      -158.247734375,
+      281.0488125
     ]
   },
   {
@@ -1756,23 +2048,27 @@
     "name": "VES(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/VES%28R%29.ngmesh",
     "sourceSha256": "278bbcf67f303c3e76354165ac7facbfab66c42b05637c7ea90342f7f757dee6",
-    "sha256": "64bbecbcfe30a01fe10fa517a512ef1c3b89eb977d005d7c23d8e3c6cd3ee428",
-    "vertices": 6600,
+    "sha256": "d41e9734f727f4cf38595412112bd17c1ee80aa5e8573b74c1fe5a491699bd25",
+    "format": "MCN2",
+    "vertices": 47108,
+    "triangles": 94524,
     "originalTriangles": 94524,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      347.87855192825776,
-      -205.7127269046055,
-      246.3547262730422
+      347.1150366378867,
+      -205.47533314206166,
+      246.2959430922035
     ],
     "min": [
-      303.2369377152666,
-      -244.92224359127414,
-      191.66937765018662
+      303.2086875,
+      -245.23559375,
+      191.31071875
     ],
     "max": [
-      387.54103311929686,
-      -163.21099590940304,
-      288.49166234652535
+      387.318,
+      -163.3375,
+      288.5250625
     ]
   },
   {
@@ -1780,23 +2076,27 @@
     "name": "WED(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/WED%28L%29.ngmesh",
     "sourceSha256": "61989be0eb5d4c1b1c969871bce8df421cece79e703166c3affd5dc5f8bd617a",
-    "sha256": "d457da160bb78bd97a74dc013e4eddcefb04cbdd48b92b32cf87dd6569d2a802",
-    "vertices": 6600,
+    "sha256": "9333832a14e9e3cff1ae094a97629f60db6024d04df3f3cae231d8a9788ce513",
+    "format": "MCN2",
+    "vertices": 52844,
+    "triangles": 105958,
     "originalTriangles": 105958,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      488.6816146301245,
-      -229.36470288615365,
-      255.8389632726874
+      489.40631539353967,
+      -229.2042791899865,
+      255.85261576999977
     ],
     "min": [
-      429.757029673369,
-      -280.6873544433295,
-      216.33531784165132
+      429.47215625,
+      -280.82009375,
+      216.263171875
     ],
     "max": [
-      537.9628494540448,
-      -171.79064849183885,
-      303.95763471830725
+      538.722,
+      -171.843453125,
+      304.08796875
     ]
   },
   {
@@ -1804,23 +2104,27 @@
     "name": "WED(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/WED%28R%29.ngmesh",
     "sourceSha256": "baad40f683a3d801c99d98a1f13e2311376fae9e820eaba6db9a8d13f2596b95",
-    "sha256": "365386faec044da5bf19ad62f1ef1f0beefe40e3e7dbc254c482e164671037bf",
-    "vertices": 6600,
+    "sha256": "e717b4a716ffaea2cf1943d2200cc81bb8a4dde32ce70d67ca7c8517bea334b6",
+    "format": "MCN2",
+    "vertices": 52979,
+    "triangles": 106158,
     "originalTriangles": 106158,
+    "interactiveTriangles": 20000,
+    "chunks": 6,
     "center": [
-      295.49735976473664,
-      -234.92154314974297,
-      264.8758156379632
+      294.2284226621608,
+      -234.58346651178815,
+      265.22627850480836
     ],
     "min": [
-      242.79031760198382,
-      -285.2301255764023,
-      225.3079581553132
+      242.254234375,
+      -285.61790625,
+      225.341703125
     ],
     "max": [
-      355.4286447434507,
-      -176.48885648182923,
-      312.59303819359445
+      355.3169375,
+      -176.483421875,
+      312.53628125
     ]
   },
   {
@@ -1828,23 +2132,27 @@
     "name": "a'L(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/a%27L%28L%29.ngmesh",
     "sourceSha256": "82c45903d45d727683180025c1e05cdb50e1bab95b03147fad395919978d551e",
-    "sha256": "aba2fa34964c13608b99a2eae0f9678367f405e16e1596862439b31b9f0f1da6",
-    "vertices": 6600,
+    "sha256": "594b1942cea35f751a793d7b2354ce74480613f86c5201eead910cc309d497c7",
+    "format": "MCN2",
+    "vertices": 8267,
+    "triangles": 16552,
     "originalTriangles": 16552,
+    "interactiveTriangles": 16552,
+    "chunks": 1,
     "center": [
-      461.05168562353845,
-      -154.0475191997141,
-      96.48749664585426
+      461.0753376602759,
+      -153.52369476155172,
+      97.33255525545862
     ],
     "min": [
-      446.9489791195867,
-      -184.2923681161027,
-      58.35445301580534
+      446.98496875,
+      -184.312390625,
+      58.3780859375
     ],
     "max": [
-      479.1866762800832,
-      -120.57619053676191,
-      136.725218108019
+      479.15325,
+      -120.6044921875,
+      136.686234375
     ]
   },
   {
@@ -1852,23 +2160,27 @@
     "name": "a'L(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/a%27L%28R%29.ngmesh",
     "sourceSha256": "9581ea0c7bee3f38a031b6814bebabd710efefd7a1323cb73b03cd19a42d91f6",
-    "sha256": "bf7cfb77905af2a6bbc771746784663c23420e2bbad41bbc733f625fff6a3398",
-    "vertices": 6600,
+    "sha256": "489b127f041cb81932159dad568a0d2305137ba3a48118c8ffff40c7165053ef",
+    "format": "MCN2",
+    "vertices": 12461,
+    "triangles": 25100,
     "originalTriangles": 25100,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      310.60417826005164,
-      -152.15894161959588,
-      102.70402068157328
+      310.583845756261,
+      -151.16872341016372,
+      104.44355313735078
     ],
     "min": [
-      291.7844543293583,
-      -183.491010953909,
-      60.63879948999228
+      291.8979375,
+      -183.5325625,
+      60.524109375
     ],
     "max": [
-      326.42892084683587,
-      -122.3941903673317,
-      148.3810958023441
+      326.37509375,
+      -122.2248671875,
+      148.382515625
     ]
   },
   {
@@ -1876,23 +2188,27 @@
     "name": "aL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/aL%28L%29.ngmesh",
     "sourceSha256": "0d57e4de5b5567b48017ad88776e1bd288f950eeb4a5930fd964131403d11552",
-    "sha256": "cfe7756dfb22bf8288bec78613e38c39da07ac57e854e976acbb0a1b23c249b4",
-    "vertices": 6600,
+    "sha256": "589d4187a2abf3d91431af4eab9ed351a6120fc57ab347c5fe9e08dc12327bd5",
+    "format": "MCN2",
+    "vertices": 14294,
+    "triangles": 28632,
     "originalTriangles": 28632,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      460.5201392596923,
-      -161.36853288057216,
-      102.40215338937716
+      460.6948122245311,
+      -161.10419211622818,
+      103.2816192584081
     ],
     "min": [
-      435.0471306746352,
-      -184.76402594435166,
-      49.94491442741189
+      435.00934375,
+      -184.779703125,
+      49.7611640625
     ],
     "max": [
-      490.43682197327314,
-      -134.69036804076,
-      157.40820597151162
+      490.3719375,
+      -134.65915625,
+      157.82046875
     ]
   },
   {
@@ -1900,23 +2216,27 @@
     "name": "aL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/aL%28R%29.ngmesh",
     "sourceSha256": "a075a908386470b30a7e15a1e580e8d5bdada6c83aea199413a13accfe29b2e8",
-    "sha256": "70441cb8e4d0c08bd94111031e1e8b6c96ed3e40254b55454d04907dfaf1581e",
-    "vertices": 6600,
+    "sha256": "d5df453fbbf2e028610c08e0507e8e8961dc7b4cce773b77c92cb0918091ee70",
+    "format": "MCN2",
+    "vertices": 17815,
+    "triangles": 35720,
     "originalTriangles": 35720,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      311.9099904493869,
-      -161.35530518646598,
-      106.84660061586577
+      311.77563204287065,
+      -161.20122359931926,
+      108.36554968491292
     ],
     "min": [
-      286.08554560749883,
-      -183.89137220198378,
-      51.655606797143186
+      286.04475,
+      -183.913640625,
+      51.713859375
     ],
     "max": [
-      331.71728190841486,
-      -139.4237786876034,
-      168.65784863678894
+      331.7328125,
+      -139.306015625,
+      168.760078125
     ]
   },
   {
@@ -1924,23 +2244,27 @@
     "name": "b'L(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/b%27L%28L%29.ngmesh",
     "sourceSha256": "bbf40dbae91d87fd467df09a98233b8c9df2bce95404b61018b0dddf4837e18d",
-    "sha256": "a5a1aff63a6436baa4d737f62d51705fe47e34bca50940284abdf3afbe18032c",
-    "vertices": 6600,
+    "sha256": "27b271b8776a41195a3c7e995c0755604a8fc856f1bed85e3d9550c66aaf8036",
+    "format": "MCN2",
+    "vertices": 11599,
+    "triangles": 23216,
     "originalTriangles": 23216,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      428.20553637362417,
-      -136.8631527098554,
-      141.68184449440346
+      429.0826457318534,
+      -136.51140080300613,
+      141.52269084888815
     ],
     "min": [
-      388.2904764824423,
-      -158.34794413542105,
-      124.7693176664836
+      388.61465625,
+      -158.177796875,
+      124.6814765625
     ],
     "max": [
-      477.26891050340123,
-      -116.0683136673889,
-      159.75592649649903
+      477.43971875,
+      -116.230203125,
+      159.90325
     ]
   },
   {
@@ -1948,23 +2272,27 @@
     "name": "b'L(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/b%27L%28R%29.ngmesh",
     "sourceSha256": "7125223038862085b7c00d9636640f329a8f81cfab7bba15393493570ef51c78",
-    "sha256": "fd1bddc6811090e07692a6ed7560f5ca0d06ee5ec512cd42d94438ef24887ff2",
-    "vertices": 6600,
+    "sha256": "29e08390c492e833f382f1ecd0f77e25b35c7e1fd26d6bd661ebbf0d53e5b4f5",
+    "format": "MCN2",
+    "vertices": 11757,
+    "triangles": 23574,
     "originalTriangles": 23574,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      348.50360165198504,
-      -139.79227472131564,
-      144.55009224140935
+      347.61079479512205,
+      -139.27384694889193,
+      144.3968976879463
     ],
     "min": [
-      300.85140477090295,
-      -157.8604274206885,
-      126.19924271777359
+      300.7248125,
+      -157.904625,
+      125.788109375
     ],
     "max": [
-      381.265652851783,
-      -123.6696873277714,
-      159.07499911530655
+      381.37146875,
+      -123.65384375,
+      159.31109375
     ]
   },
   {
@@ -1972,23 +2300,27 @@
     "name": "bL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/bL%28L%29.ngmesh",
     "sourceSha256": "4a0dd399a7e77ce0838c0c54c3a012295619b1683fa352bad88257beb327d4ba",
-    "sha256": "54a3168f3c8247c9ebbc9adeb4c7e3d13ea300e493e6b5350e6c2857352ece32",
-    "vertices": 6600,
+    "sha256": "e52f99c75153934da63279087abbf0cf2c2c83ba05c6631cf79caab46b461770",
+    "format": "MCN2",
+    "vertices": 9781,
+    "triangles": 19594,
     "originalTriangles": 19594,
+    "interactiveTriangles": 19594,
+    "chunks": 1,
     "center": [
-      435.04116652854583,
-      -133.5534805744595,
-      155.85876861244247
+      436.0165192049645,
+      -133.0248073009852,
+      155.49234889549885
     ],
     "min": [
-      395.06060193794735,
-      -152.15749548552958,
-      140.31674597179176
+      395.0105625,
+      -152.0639375,
+      140.2470625
     ],
     "max": [
-      478.069523506531,
-      -114.71792246355439,
-      177.78424849558445
+      478.13184375,
+      -114.6880703125,
+      177.6598125
     ]
   },
   {
@@ -1996,23 +2328,27 @@
     "name": "bL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/bL%28R%29.ngmesh",
     "sourceSha256": "63f69732c91d8ea8d259f1dd1425523e194aa1e1ab031d2e7e5c7cd09ea040dc",
-    "sha256": "25c1c73cd817aff578008803ed58e25e4ab38fed709f9f8bc7e7531e96010ac4",
-    "vertices": 6600,
+    "sha256": "7cf55737164825bfd46de1bebbd3e12a97b651e3cdb425b53b379af3ed79a173",
+    "format": "MCN2",
+    "vertices": 11868,
+    "triangles": 23808,
     "originalTriangles": 23808,
+    "interactiveTriangles": 20000,
+    "chunks": 2,
     "center": [
-      340.7685640961848,
-      -137.25331089614377,
-      161.68693197161915
+      340.80851849511265,
+      -136.68621074528212,
+      161.45255615547086
     ],
     "min": [
-      296.5622479279663,
-      -151.8848020322122,
-      148.42786547277004
+      296.51875,
+      -151.896484375,
+      148.1444375
     ],
     "max": [
-      382.59122475853974,
-      -123.10442064168878,
-      179.28308282479034
+      382.58678125,
+      -123.132734375,
+      179.3985
     ]
   },
   {
@@ -2020,23 +2356,27 @@
     "name": "gL(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/gL%28L%29.ngmesh",
     "sourceSha256": "d49c6265f25dabd94912ed1d4431c6928d20ad4ef4d16fce1fc254f1b89aba58",
-    "sha256": "acffcebf91ea8358a2f507bfa901edcfe77b8e974b249528a0c5ead4ecb9f5b3",
-    "vertices": 6600,
+    "sha256": "093e260679d04c71c1bf523d0d838bd27acd005e217fdd7faac7c5685adfd704",
+    "format": "MCN2",
+    "vertices": 31516,
+    "triangles": 63228,
     "originalTriangles": 63228,
+    "interactiveTriangles": 20000,
+    "chunks": 4,
     "center": [
-      447.71202092802764,
-      -124.88982017295035,
-      141.21503842473606
+      447.60565208742975,
+      -123.8850210686633,
+      140.8797096167424
     ],
     "min": [
-      387.37542002473253,
-      -169.84191408926253,
-      116.59576540472351
+      387.6830625,
+      -169.867640625,
+      116.39384375
     ],
     "max": [
-      504.87486869725825,
-      -93.46735330993137,
-      165.3992385819615
+      505.09621875,
+      -93.2189609375,
+      165.35025
     ]
   },
   {
@@ -2044,23 +2384,27 @@
     "name": "gL(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/gL%28R%29.ngmesh",
     "sourceSha256": "eda698add18607704dde557839b91f5df0fc03c82f3939ddb860953d2021a4fb",
-    "sha256": "be39c65136d8e45bc3eb19a62076dd5e95108c0361df6638a277dde7a72d8a9e",
-    "vertices": 6600,
+    "sha256": "a4a0f29afb911921aab92cd0a018bd76d3496549508f4388b72ea88a3ba29629",
+    "format": "MCN2",
+    "vertices": 31283,
+    "triangles": 62774,
     "originalTriangles": 62774,
+    "interactiveTriangles": 20000,
+    "chunks": 4,
     "center": [
-      325.99953411162574,
-      -128.98158682796378,
-      147.5262102966872
+      327.19580173636837,
+      -128.2107537425479,
+      147.46337962136877
     ],
     "min": [
-      271.3479186599627,
-      -173.703613264184,
-      118.0237370710982
+      271.26371875,
+      -173.803796875,
+      117.6970859375
     ],
     "max": [
-      385.8176462508065,
-      -101.08698227201681,
-      175.91035643964437
+      385.80096875,
+      -100.973578125,
+      176.013453125
     ]
   },
   {
@@ -2068,13 +2412,17 @@
     "name": "AB(R)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AB%28R%29.ngmesh",
     "sourceSha256": "36d074d20598ce8d8b4bbfaa9e88e64039401b566e676f45944ec7ee8d072d1e",
-    "sha256": "ad458bd8635223b6b82703f6183744c9864ceb7e68101fa9daba25d546a80f71",
-    "vertices": 6600,
+    "sha256": "6fb6dc4d8076749f54aa99b9ab9499d1c1683cabcedb396bb50eac8a590f2dcf",
+    "format": "MCN2",
+    "vertices": 1208,
+    "triangles": 2412,
     "originalTriangles": 2412,
+    "interactiveTriangles": 2412,
+    "chunks": 1,
     "center": [
-      381.4795038570614,
-      -195.88463462978393,
-      179.2576370916801
+      381.4869704573679,
+      -195.7174711558361,
+      179.2475507036424
     ],
     "min": [
       375.553375,
@@ -2092,9 +2440,13 @@
     "name": "AB(L)",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/AB%28L%29.ngmesh",
     "sourceSha256": "89188ed7fe6cb2ff706d581c683b588e97c3cc0cd9697229c50a8fa9e9a1d7dd",
-    "sha256": "0015710c62a23911f55f31d0711a3778c93d9b1eabfb40e3f721411c01ab4221",
-    "vertices": 3582,
+    "sha256": "9da4a3188a535e948a1a5cdc38c68732ae1311c6f40e05e57cb79902ca571bbc",
+    "format": "MCN2",
+    "vertices": 599,
+    "triangles": 1194,
     "originalTriangles": 1194,
+    "interactiveTriangles": 1194,
+    "chunks": 1,
     "center": [
       395.01241271911573,
       -196.22892946577636,
@@ -2116,23 +2468,27 @@
     "name": "CV-anterior",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CV-anterior.ngmesh",
     "sourceSha256": "7005bb55dfe111a9b2223537a4469c30e655504429af80d10c6c8928430694c8",
-    "sha256": "ee93134fd2a137d662c0ad2c77f7e69a77603ef523f57d093225aeafeac71810",
-    "vertices": 6600,
+    "sha256": "a0a460f18637c70cdb183149a69da65e977862b5ad496bc8b6f9cde1bcaf41f8",
+    "format": "MCN2",
+    "vertices": 48305,
+    "triangles": 96606,
     "originalTriangles": 96606,
+    "interactiveTriangles": 20000,
+    "chunks": 5,
     "center": [
-      396.7000110133443,
-      -381.80388055023064,
-      381.17973660589274
+      397.2673137848038,
+      -381.41368899765155,
+      381.49886484965083
     ],
     "min": [
-      356.4321790892867,
-      -415.92813371868755,
-      303.6288347718219
+      356.138375,
+      -416.00015625,
+      303.4496875
     ],
     "max": [
-      442.5116973186614,
-      -348.167155595229,
-      438.9162655682317
+      442.62540625,
+      -348.16,
+      439.0420625
     ]
   },
   {
@@ -2140,23 +2496,27 @@
     "name": "CRN",
     "source": "https://storage.googleapis.com/flyem-male-cns/rois/fullbrain-roi-v4/mesh/CRN.ngmesh",
     "sourceSha256": "5fa74c81204d23d869ed29ac53b47a58f8f45e66b194f003b4e5e45b17072cb7",
-    "sha256": "5dff1aa2ae089334d184928e18fb0af8366cefb423c4d4f3b7783afdbc693e90",
-    "vertices": 6600,
+    "sha256": "1437810344fabd08b8e8fe094e974b46159618b9b97f4faab901584506f20d26",
+    "format": "MCN2",
+    "vertices": 24070,
+    "triangles": 48136,
     "originalTriangles": 48136,
+    "interactiveTriangles": 20000,
+    "chunks": 3,
     "center": [
-      392.3600193891433,
-      -370.37170875582825,
-      300.0381524729179
+      391.957092434827,
+      -369.8854179151961,
+      299.9407418499456
     ],
     "min": [
-      366.0640274306848,
-      -414.97596875,
-      249.71862554437112
+      365.92996875,
+      -414.976,
+      249.596765625
     ],
     "max": [
-      419.7077358367768,
-      -316.1629235013639,
-      352.5009399742702
+      419.57303125,
+      -316.16040625,
+      352.49846875
     ]
   }
 ]

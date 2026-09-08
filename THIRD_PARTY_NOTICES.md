@@ -18,10 +18,14 @@ neuron annotations and chemical connection graph. It does not apply to this
 app's original code or original explanation text. Scientific facts and names
 remain facts and names.
 
-**Changes:** ROI meshes reduced to at most 2,200 triangles per compartment;
+**Changes:** All 7,712,880 original ROI triangles and positions are retained in
+indexed uint16 chunks; smooth normals are encoded as normalized signed bytes.
+Companion meshes with at most 20,000 triangles per region are used during gestures
+and for context behind neuron geometry;
 coordinates rigidly rotated `(x,y,z) -> (x,-z,y)` and converted from nm to µm;
 523 neurons selected deterministically for offline morphology; the overview
-further subsamples actual edges from those neurons. Individual offline skeleton
+contains all 2,237,417 original edges from those neurons at rest. During gestures,
+whole cells are temporarily skipped; no branches are synthesized. Individual offline skeleton
 files retain the original source bytes. The catalog selects `status=Traced`.
 All chemical edges whose two endpoints are in this catalog are preserved,
 encoded as delta-varints, gzipped per cell and indexed in SQLite. Non-traced

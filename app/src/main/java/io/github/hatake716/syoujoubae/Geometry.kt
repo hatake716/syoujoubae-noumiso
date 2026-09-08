@@ -26,8 +26,9 @@ object Geometry {
         for (i in 0 until nv.toInt()) {
             val x = b.float; val y = b.float; val z = b.float
             if (!x.isFinite() || !y.isFinite() || !z.isFinite()) throw IOException("座標が不正です")
-            val p = coordinate(x,y,z)
-            p.copyInto(vertices, i*3)
+            vertices[i*3]=(x/1000f-origin[0])/unit
+            vertices[i*3+1]=(-z/1000f-origin[1])/unit
+            vertices[i*3+2]=(y/1000f-origin[2])/unit
         }
         val result = FloatArray(ne.toInt() * 6)
         for (i in 0 until ne.toInt()*2) {

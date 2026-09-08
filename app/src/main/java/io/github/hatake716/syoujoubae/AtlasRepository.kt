@@ -23,6 +23,7 @@ data class Neuron(val id: Long, val type: String, val instance: String, val supe
 data class Connection(val id: Long, val weight: Int, val type: String)
 data class Connections(val outputs: List<Connection>, val inputs: List<Connection>, val outWeight: Long, val inWeight: Long)
 data class Skeleton(val id: Long, val lines: FloatArray, val fromCache: Boolean)
+data class OverviewCell(val id: Long, val group: String)
 
 class AtlasRepository(private val context: Context) : AutoCloseable {
     val regions: List<Region>
@@ -31,6 +32,7 @@ class AtlasRepository(private val context: Context) : AutoCloseable {
     val meshes: List<MeshInfo>
     val offlineIds: Set<Long>
     val previewCount: Int
+    val overviewCells: List<OverviewCell>
     val stats: JSONObject
     private val db: SQLiteDatabase
     private val cache = File(context.cacheDir, "skeletons-v1")
@@ -48,7 +50,8 @@ class AtlasRepository(private val context: Context) : AutoCloseable {
             fun floats(key: String) = m.getJSONArray(key).let { a -> FloatArray(3) { a.getDouble(it).toFloat() } }
             MeshInfo(m.getInt("id"),m.getString("name"),floats("center"),floats("min"),floats("max"))
         }
-        offlineIds = JSONArray(assetText("skeletons.json")).objects().map { it.getLong("id") }.toSet()
+        overviewCells = JSONArray(assetText("skeletons.json")).objects().map { OverviewCell(it.getLong("id"), it.getString("group")) }
+        offlineIds = overviewCells.map { it.id }.toSet()
         previewCount = offlineIds.size
         stats = JSONObject(assetText("connections.json"))
         // Versioned, atomic install; failed/low-space copies can be retried without corrupting a database.
