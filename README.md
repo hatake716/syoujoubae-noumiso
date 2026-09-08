@@ -22,13 +22,14 @@ Google Playでの有料買い切り配布を想定しています。
 
 ## 画面
 
-<img src="docs/screenshots/1.0.1/01-portrait.png" alt="全脳の領域モデル" width="260"> <img src="docs/screenshots/1.0.1/03-landscape.png" alt="横画面での表示" width="520"> <img src="docs/screenshots/1.0.1/02-region-detail.png" alt="触角葉の機能解説" width="260">
+<img src="docs/screenshots/1.0.2/01-default-overview.png" alt="起動時の神経概観" width="260"> <img src="docs/screenshots/1.0.1/03-landscape.png" alt="横画面での表示" width="520"> <img src="docs/screenshots/1.0.1/02-region-detail.png" alt="触角葉の機能解説" width="260">
 
 ## 表示とデータの範囲
 
 **全脳の領域地図**と**神経の概観**は異なります。90個の領域は公式の
 `rois/fullbrain-roi-v4` に由来する脳の区画です。神経の概観は523個の実測細胞が持つ
 **2,237,417本の枝を静止時に全て表示**します。操作中は細胞数を一時的に減らします。
+神経の概観は起動時にオンです。表示設定の「神経の概観」スイッチでオフにできます。
 全165,122細胞・全シナプスを同時描画するものではありません。
 個別表示は公式の中心線形態を表示します。細胞の表面メッシュや発火シミュレーションではありません。
 

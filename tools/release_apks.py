@@ -15,7 +15,7 @@ def main():
     props = dict(line.split('=',1) for line in (ROOT/'keystore.properties').read_text().splitlines()
                  if '=' in line and not line.lstrip().startswith('#'))
     props = {key.strip():value.strip() for key,value in props.items()}
-    version = '1.0.1'
+    version = '1.0.2'
     out = ROOT/'artifacts'/f'release-{version}'
     out.mkdir(parents=True,exist_ok=True)
     bundletool = Path(os.environ.get('BUNDLETOOL_JAR',ROOT/'data/source/bundletool.jar'))
@@ -45,10 +45,10 @@ def main():
     for path in [apk,aab]:
         with path.open('rb') as f:digest=hashlib.file_digest(f,'sha256').hexdigest()
         files.append(dict(file=path.name,bytes=path.stat().st_size,sha256=digest))
-    report=dict(versionName=version,versionCode=2,applicationId='io.github.hatake716.syoujoubae',minSdk=28,targetSdk=36,
+    report=dict(versionName=version,versionCode=3,applicationId='io.github.hatake716.syoujoubae',minSdk=28,targetSdk=36,
                 signerSha256='88aa69f3592696564c3aef72deac9a3157048818673e9ca575ce0cc409defb1e',
                 highDetailDelivery='install-time asset pack atlas_models; universal APK includes the same assets',files=files)
-    (ROOT/'docs/play/release-1.0.1.json').write_text(json.dumps(report,indent=2)+'\n')
+    (ROOT/'docs/play'/f'release-{version}.json').write_text(json.dumps(report,indent=2)+'\n')
     (out/'SHA256SUMS').write_text(''.join(f"{entry['sha256']}  {entry['file']}\n" for entry in files))
     print(json.dumps(report,indent=2))
 

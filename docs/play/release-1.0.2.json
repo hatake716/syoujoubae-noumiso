@@ -1,0 +1,21 @@
+{
+  "versionName": "1.0.2",
+  "versionCode": 3,
+  "applicationId": "io.github.hatake716.syoujoubae",
+  "minSdk": 28,
+  "targetSdk": 36,
+  "signerSha256": "88aa69f3592696564c3aef72deac9a3157048818673e9ca575ce0cc409defb1e",
+  "highDetailDelivery": "install-time asset pack atlas_models; universal APK includes the same assets",
+  "files": [
+    {
+      "file": "syoujoubae-noumiso-1.0.2.apk",
+      "bytes": 272717533,
+      "sha256": "db4baa3fdddb444a8de56448e1ac9c3dbf7a95007a902fdb23a36b420ebe79e1"
+    },
+    {
+      "file": "syoujoubae-noumiso-1.0.2.aab",
+      "bytes": 253160808,
+      "sha256": "ca7656c15b82341fc10650203045dc9e99f5efb69452dc8e1b492c0cb0728988"
+    }
+  ]
+}

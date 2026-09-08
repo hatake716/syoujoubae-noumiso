@@ -14,7 +14,7 @@ class AtlasViewModel(app:Application):AndroidViewModel(app) {
     var selectedMesh by mutableStateOf<Int?>(null)
     var group by mutableStateOf("すべて")
     var regionQuery by mutableStateOf("")
-    var preview by mutableStateOf(false)
+    var preview by mutableStateOf(true)
     var isolate by mutableStateOf(false)
     var opacity by mutableFloatStateOf(.82f)
     var pose by mutableIntStateOf(0)
